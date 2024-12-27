@@ -1,5 +1,6 @@
 "use client"
 
+import { all } from "axios"
 import { useState } from "react"
 
 
@@ -20,7 +21,8 @@ export const CarouselComponent = ({images}: {images: string[]}) => {
             <div
                 className="flex transition-transform duration-500"
                 style={{ 
-                    transform: `translateX(-${currentIndex * 100}%)`
+                    transform: `translate#d(-${currentIndex * 100}%, 0px, 0px)`,
+                    transition: "all 0.5s ease"
                 }}
             >
                {images.map((image, index) => (

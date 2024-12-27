@@ -3,8 +3,6 @@
 import { useEffect, useState } from "react"
 import { useAuth } from "../(auth)/shared/context/Auth.context"
 import usePrivate from "../(auth)/shared/hooks/usePrivate.hook"
-import { UserInterface } from "../(auth)/shared/interfaces/User.interface"
-import { ProductInterface } from "../store/Product.interface"
 import Card from "./Card.component"
 import axios from "axios"
 import { NEXT_PUBLIC_API_URL } from "@/components/shared/helpers/getEnvs"

@@ -1,21 +1,17 @@
 "use client"
 
 import { NavBottomConfig } from "../config/Nav.config"
-import { useAuth } from "@/app/(auth)/shared/context/Auth.context"
-import { BtnNavbar } from "./BtnNavbar"
+import { NavItemProps } from "./NavItemProps"
+import { INavItemProps } from "../interface/INavItemProps"
+import { filterNavItems } from "../utils/filterNavItems"
 
 export const NavBottom = () => {
-    const {isAuthenticated} = useAuth()
-
-    const filteredNavTopConfig = isAuthenticated ? 
-    NavBottomConfig.filter(element => !element.hiddenToPrivate) : 
-    NavBottomConfig.filter((element) => !element.isPrivate);
-
+    const filteredNavTopConfig = filterNavItems(NavBottomConfig)
     return ( 
         <ul className="flex justify-around items-center max-w-[500px]  mx-auto">
             { 
-                filteredNavTopConfig.map((element) => (
-                    <BtnNavbar key={element.title} element={element}/> 
+                filteredNavTopConfig.map((element: INavItemProps) => (
+                    <NavItemProps key={element.id} element={element}/> 
                 ))
             }
         </ul>     
