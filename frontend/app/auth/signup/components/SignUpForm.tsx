@@ -13,6 +13,7 @@ export default function SignUpForm() {
         phone: ""
     })
 
+
     const onChange = (event: ChangeEvent<HTMLInputElement>): void => {
         const { name, value } = event.target
         setForm({...form, [name]: value})

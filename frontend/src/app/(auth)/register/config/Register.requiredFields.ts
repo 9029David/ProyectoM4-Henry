@@ -1,0 +1,1 @@
+export const requiredFields: string[] = ["name", "email", "password", "address", "phone"]

@@ -17,12 +17,12 @@ export const Navbar = () => {
       <header className="bg-gradient-to-t from-indigo-600 to-blue-500 text-white shadow-lg">
         {/* Logo or Brand */}
         <div className="flex items-center justify-between py-3 px-6 max-w-7xl mx-auto">
-          <div className="text-xl font-semibold">Mi Tienda</div>
+          <div className="text-xl font-semibold">Mi tienda</div>
           {/* Button to toggle menu on small screens */}
           <button
-          className="md:hidden text-3xl p-2 rounded-full focus:outline-none"
-          onClick={toggleMenu}
-          >
+            className="md:hidden text-3xl p-2 rounded-full focus:outline-none"
+            onClick={toggleMenu}
+            >
             <span className="text-white">☰</span>
           </button>
           <ul
