@@ -10,6 +10,7 @@ import OrDivider from "../components/OrDivider"
 import { requiredFields } from "../config/Login.requiredFields"
 import { ILogin } from "../interfaces/ILogin"
 import { validateLogin } from "../validation/Login.validate"
+import usePublic from "../../shared/hooks/usePublic.hook"
 
 
 export const Login = () => {
@@ -23,6 +24,7 @@ export const Login = () => {
         validateForm: validateLogin,
         redirectSuccessRoute: "/"
     })
+
     return (
         <FormWrapper title="Bienvenido!" withTopHr withBottomHr={false}>
             <LoginForm 

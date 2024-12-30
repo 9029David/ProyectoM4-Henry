@@ -7,8 +7,6 @@ import { ILogin } from "../../login/interfaces/ILogin";
 import axios from "axios";
 import { IRegister } from "../../register/interfaces/IRegister";
 import { NEXT_PUBLIC_API_URL } from "../../../../components/shared/helpers/getEnvs";
-import { useRouter } from "next/navigation";
-import { Fire, getAlert } from "@/components/nav/utils/getAlert";
 
 interface AuthContextInterface {
     user: UserInterface | null

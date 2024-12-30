@@ -1,9 +1,12 @@
+"use client"
+
 import Link from "next/link"
-import { ProductInterface } from "../../store/Product.interface"
 import BtnPrimaryComponent from "../../../components/shared/components/buttons/BtnPrimary.component"
+import { IProduct } from "@/components/shared/context/IProduct"
+import { useProducts } from "@/components/shared/context/useProducts"
 
 
-export const CardProductComponent = ({product} : {product: ProductInterface}) => {
+export const CardProductComponent = ({product} : {product: IProduct}) => {
     const {name, image, price} = product
     return (
         <>
@@ -15,17 +18,14 @@ export const CardProductComponent = ({product} : {product: ProductInterface}) =>
     )
 }
 
-export const ProductsComponent = ({productsData} : {productsData: ProductInterface[]}) => {
-    const indexInitial = 0
-    const indexEnd = 3
-
-    const productsSlice = productsData.slice(indexInitial, indexEnd)
-
+export const ProductsComponent = () => {
+    const {products} = useProducts()
+    
     return (
         <>
             <h2 className="text-center text-2xl font-bold text-gray-800 mb-6">Productos Recomendados</h2>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-                {productsSlice.map((product: ProductInterface) => (
+                {products.map((product: IProduct) => (
                     <div
                         key={product.id}
                         className="bg-white text-gray-900 p-6 rounded-lg shadow-md text-center"
@@ -37,7 +37,7 @@ export const ProductsComponent = ({productsData} : {productsData: ProductInterfa
                 ))}
             </div>
             <div className="flex justify-center mt-6">
-                <BtnPrimaryComponent name="Go Store" href="/store"/> 
+                <BtnPrimaryComponent name="Store" href="/store"/> 
             </div>
             
         </>

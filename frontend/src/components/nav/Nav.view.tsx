@@ -7,7 +7,8 @@ import {Wreapper as HeaderWreapper} from "../shared/components/Wrapper"
 export default function NavView() {
     return (
         <HeaderWreapper as="header">
-             <NavbarSection  className="py-4 bg-gray-300 text-gray-900">
+            
+            <NavbarSection  className="py-4 bg-gray-300 text-gray-900">
                 <div className="flex items-center justify-between">
                     <Logo />
                     <NavTop />

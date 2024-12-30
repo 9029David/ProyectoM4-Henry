@@ -22,7 +22,7 @@ export function useForm<T>({
     messageSuccess,
     redirectSuccessRoute
 }: UseFormProps<T>) {
-    usePublic()
+    // usePublic()
     const [form, setForm] = useState<T>(formInitial)
     const [formErrors, setFormErrors] = useState<ErrorsInterface>({})
     const [isLoading, setIsLoading] = useState(false)

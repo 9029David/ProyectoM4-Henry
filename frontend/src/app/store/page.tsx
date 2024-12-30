@@ -1,21 +1,13 @@
 "use client"
 
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { CategorysConfig } from "../home/components/Category.component";
 import { CardStoreComponent } from "./components/CardStore.component";
 import Link from "next/link";
-import { ProductInterface } from "./Product.interface";
+import { useProducts } from "@/components/shared/context/useProducts";
 
 export const Store = () => {
-    const [products, setProducts] = useState<Array<ProductInterface>>([])
-
-    useEffect(() => {
-        fetch("http://localhost:8080/products", {
-            cache: "no-cache"
-        })
-            .then(res => res.json())
-            .then(data => setProducts(data))
-    }, [])
+    const { products } = useProducts()
     
     const [selectedCategory, setSelectedCategory] = useState<number | null>(null);
 

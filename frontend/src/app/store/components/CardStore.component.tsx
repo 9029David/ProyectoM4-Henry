@@ -1,7 +1,8 @@
 import BtnPrimaryComponent from "@/components/shared/components/buttons/BtnPrimary.component"
-import { ProductInterface } from "../Product.interface"
+import { IProduct } from "@/components/shared/context/IProduct"
 
-export const CardStoreComponent = ({product} : {product: ProductInterface}) => {
+
+export const CardStoreComponent = ({product} : {product: IProduct}) => {
     const {name, image, price, description} = product
     return (
         <>

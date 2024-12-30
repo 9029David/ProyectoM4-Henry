@@ -2,10 +2,10 @@
 
 import { Mixin } from "@/app/(auth)/shared/components/Form.mixin"
 import { useCart } from "@/app/cart/context/Cart.context"
-import { ProductInterface } from "@/app/store/Product.interface"
+import { IProduct } from "@/components/shared/context/IProduct"
 import { useEffect, useState } from "react"
 
-export default function BtnAddProduct({product}: {product: ProductInterface }) {
+export default function BtnAddProduct({product}: {product: IProduct }) {
     const { addProductToCart, products, countProducts } = useCart()
     const [disabled, setDisabled] = useState(false)
 
