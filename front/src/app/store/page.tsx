@@ -2,7 +2,7 @@
 
 import React, { useState } from "react";
 import { CategorysConfig } from "../home/components/Category.component";
-import { CardStoreComponent } from "./components/CardStore.component";
+import { CardStoreComponent } from "./CardStore.component";
 import Link from "next/link";
 import { useProducts } from "../shared/context/useProducts";
 
@@ -87,9 +87,9 @@ export const Store = () => {
                             </p>
                         )
                     }
-                    
                 </div>
             </section>
+            
         </div>
     )
 }

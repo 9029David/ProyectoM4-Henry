@@ -1,7 +1,7 @@
 import Image from "next/image"
-import { CardUserInterface } from "../profile/page"
 
-export default function Card ({user}: {user: CardUserInterface}) {
+
+export default function Card ({user}: {user: any}) {
     return (
         <div className="flex items-center justify-between text-gray-900">
             <Image src={"/icon-user.png"} alt="icon-user" width={48} height={48}/>

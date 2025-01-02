@@ -7,6 +7,7 @@ import ProductDetail from "./ProductDetail"
 import axios from "axios"
 
 import { useEffect, useState } from "react"
+import ProductSkeleton from "./ProductSkeleton"
 
 
 export default function ProductPage({params} : {params: Promise<{slug : string}>}) {
@@ -37,9 +38,9 @@ export default function ProductPage({params} : {params: Promise<{slug : string}>
         fetchProduct()
     }, [params])
 
-    if (loading) return <p>Cargando...</p>;
-    if (error) return <p>Error: {error}</p>;
+    if (loading) return <ProductSkeleton/>
+    // if (error) return <p>Error: {error}</p>;
 
-    return product ? <ProductDetail product={product} /> : <p>Producto no encontrado</p>;
+    return  product ? <ProductDetail product={product} /> : <p>Producto no encontrado</p>;
 }
 

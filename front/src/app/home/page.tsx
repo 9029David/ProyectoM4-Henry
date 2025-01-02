@@ -10,15 +10,15 @@ export default async function Home() {
                 <WelcomeComponent />
             </section>
   
-            <section className="w-full bg-white py-12">
+            <section className="w-full bg-white py-12 max-w-5xl mx-auto">
                 <CategorysComponent/>
             </section>
           
-            <section className="w-full bg-gray-200 py-12">
+            <section className="w-full bg-gray-200 py-12 max-w-5xl mx-auto">
                 <ProductsComponent/>
             </section>
     
-            <section className="w-full bg-white py-12">
+            <section className="w-full bg-white py-12 max-w-5xl mx-auto">
                 <BenefitsComponent/>
             </section>
       </div>

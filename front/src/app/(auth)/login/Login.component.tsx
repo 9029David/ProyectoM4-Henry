@@ -28,8 +28,8 @@ export const LoginForm: React.FC<LoginFormProps> = ({
                 inputs={formFields} 
                 formErrors={formErrors}
             /> 
-            <ButtonLogin name="iniciar sesion" isLoading={isLoading}/>
-            <ForgotPassword question={"¿Olvidaste tu contraseña?"} href=""/>  
+            <ButtonLogin name="Login" isLoading={isLoading}/>
+            <ForgotPassword question={"You forgot your password?"} href=""/>  
         </form>
     )
 }

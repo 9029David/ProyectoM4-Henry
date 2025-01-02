@@ -1,1 +1,0 @@
-export interface FooterInterface { href: string, title: string }

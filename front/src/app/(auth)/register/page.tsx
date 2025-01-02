@@ -21,7 +21,7 @@ export default function Register() {
     })
 
     return (
-        <FormWrapper title="Crear una cuenta" withTopHr withBottomHr={false} >
+        <FormWrapper title="Create account" withTopHr withBottomHr={false} >
             <RegisterForm
                 form={form}
                 formErrors={formErrors}

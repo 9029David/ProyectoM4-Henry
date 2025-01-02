@@ -1,9 +1,8 @@
 "use client"
 
-import { NavBottomConfig } from "../config/Nav.config"
+import { filterNavItems } from "../filterNavItems"
+import { INavItemProps, NavBottomConfig } from "../Nav.config"
 import { NavItemProps } from "./NavItemProps"
-import { INavItemProps } from "../interface/INavItemProps"
-import { filterNavItems } from "../utils/filterNavItems"
 
 export const NavBottom = () => {
     const filteredNavTopConfig = filterNavItems(NavBottomConfig)

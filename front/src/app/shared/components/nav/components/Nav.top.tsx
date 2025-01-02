@@ -1,17 +1,15 @@
 "use client"
 
-import { NavTopConfig } from "../config/Nav.config";
+import { INavItemProps, NavTopConfig } from "../Nav.config";
 import { NavItemProps } from "./NavItemProps";
-import { INavItemProps } from "../interface/INavItemProps";
-import { filterNavItems } from "../utils/filterNavItems";
-import { handlerLogout } from "../utils/handlerLogout";
+import { filterNavItems } from "../filterNavItems";
 import { useRouter } from "next/navigation";
 import { useAuth } from "@/app/(auth)/shared/context/Auth.context";
+import { handlerLogout } from "../handlerLogout";
 
 export const NavTop = () => {
     const router = useRouter()
     const { logout } = useAuth()
-
     const filteredNavTopConfig = filterNavItems(NavTopConfig)
 
     return (

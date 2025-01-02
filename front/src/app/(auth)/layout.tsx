@@ -1,3 +1,6 @@
+import { FooterDefault } from "../shared/components/nav/Footer.default"
+import NavDefault from "../shared/components/nav/Nav.default"
+
 export const LayoutForm = ({children}: {children: React.ReactNode}) => {
     return (
         <div className="flex flex-col justify-center items-center text-black min-h-[100vh]">

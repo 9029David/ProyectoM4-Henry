@@ -22,13 +22,15 @@ export const Card = ({data} : {data: Card}) => {
     const {title, image, description, button} = data
 
     return (
-        <div className="benefit-container-card flex flex-col justify-center items-center bg-white rounded-lg p-2">
-            <h1>{title}</h1>
-            <div>
-                <img src={image.src} alt={image.alt} width={100} height={100}/>
+        <div className="hover:scale-105 transition-transform duration-300">
+            <div className="benefit-container-card flex flex-col justify-center items-center bg-white rounded-lg p-2 shadow-lg">
+                <h1>{title}</h1>
+                <div>
+                    <img src={image.src} alt={image.alt} width={100} height={100}/>
+                </div>
+                <span className="text-center line-clamp-1">{description}</span>
+                <ButtonBase name={button.name} href={button.route} variant="secondary"/>
             </div>
-            <span className="text-center line-clamp-1">{description}</span>
-            <ButtonBase name={button.name} href={button.route} variant="secondary"/>
         </div>
     )
 }

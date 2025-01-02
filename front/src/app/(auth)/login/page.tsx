@@ -24,7 +24,7 @@ export const Login = () => {
     })
 
     return (
-        <FormWrapper title="Bienvenido!" withTopHr withBottomHr={false}>
+        <FormWrapper title="Welcome!" withTopHr withBottomHr={false}>
             <LoginForm 
                 form={form} 
                 formErrors={formErrors} 
@@ -34,7 +34,7 @@ export const Login = () => {
             />
             <OrDivider letter="o"/>
             <ButtonRegister 
-                name={"Create new Account"}
+                name={"Create new account"}
                 variant={"terciary"}
                 href={"/register"}
             />
