@@ -6,12 +6,18 @@ import { Mixin } from "@/app/shared/components/MixinAlert"
 import { IProduct } from "@/app/shared/context/IProduct"
 
 import { useEffect, useState } from "react"
+import { useAuth } from "../(auth)/shared/context/Auth.context"
 
 export default function BtnAddProduct({product}: {product: IProduct }) {
     const { addProductToCart, products, countProducts } = useCart()
     const [disabled, setDisabled] = useState(false)
+    const {isAuthenticated} = useAuth()
 
     const handlerAddProduct = () => {
+        if (!isAuthenticated) {
+            Mixin.fire("Debes iniciar sesión para agregar productos al carrito", "", "warning")
+            return
+        }
         addProductToCart(product) 
         Mixin.fire("Producto agregado", "", "success")
     }

@@ -1,4 +1,4 @@
-import { IProduct } from "../../components/shared/context/IProduct";
+import { IProduct } from "@/app/shared/context/IProduct";
 import { IUser } from "../user/IUser";
 
 export interface IOrderSucess {

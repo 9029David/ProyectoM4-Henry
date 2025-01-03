@@ -20,8 +20,8 @@ export interface INavItemProps {
 export const NavBottomConfig: INavItemProps[] = [
     { 
         id: 1, 
-        href: "/store", 
-        title: "store", 
+        href: "/home", 
+        title: "home", 
         icon: <IconLanding dimention={dLanding}/>,
         isPrivate: true,
         isPublic: true
@@ -40,7 +40,7 @@ export const NavBottomConfig: INavItemProps[] = [
         title: "dashboard", 
         icon: <IconDashboard dimention={dDashboard}/>,
         isPrivate: true,
-        isPublic: false
+        isPublic: true
     },
 ]
 
@@ -51,7 +51,7 @@ export const NavTopConfig: INavItemProps[] = [
         title: "cart", 
         icon: <IconCart/>,
         isPrivate: true,
-        isPublic: false
+        isPublic: true
     },
     {
         id: 2,

@@ -1,7 +1,7 @@
 import BtnAddProduct from "@/app/cart/BtnAddProduct"
 import Logo from "@/app/shared/components/icons/IconTechShop"
-import BtnPrimaryComponent from "@/app/shared/components/buttons/BtnPrimary.component"
 import { IProduct } from "@/app/shared/context/IProduct"
+import { ButtonBase } from "@/app/shared/components/ButtonBase"
 
 
 export default function ProductDetail({product} : {product: IProduct}) {
@@ -28,7 +28,7 @@ export default function ProductDetail({product} : {product: IProduct}) {
                                     {`$ ${product?.price}`}
                                 </span>
                                 <div className="flex flex-col max-w-xs"> 
-                                    <BtnPrimaryComponent name="Comprar Ahora" href=""/> 
+                                    <ButtonBase name="Comprar Ahora" href={`/home/${product.id}`}/> 
                                     <BtnAddProduct product={product}/>
                                 </div>
                             </div>

@@ -81,39 +81,17 @@ export default function Cart() {
     }
 
     return (
-            // <div className="text-gray-900 bg-[#ECE7E7] flex gap-8 my-8">
-            //     <div className="w-[70%] min-h-[100px]">
-            //         {products.length ? ( 
-            //             <div>
-            //                 <div className="bg-white rounded-lg shadow-gray-300 shadow-md">
-            //                     {products.map((product) => (
-            //                         <Card product={product}/>
-            //                     ))}
-            //                 </div>
-
-            //                 <div className="flex justify-end gap-4">
-            //                     <ButtonBase name="Clear cart" onClick={handlerEmptyCart}/>
-            //                     <ButtonBase name="Checkeout" onClick={handlerCheckout}/>
-            //                 </div>
-            //             </div>
-                        
-            //         ): ( <span>No hay productos en el carrito</span> )}
-            //     </div>
-            //     <div className="w-[30%] relative border border-green-500">
-            //         <div className="bg-white rounded-lg shadow-gray-300 shadow-md h-36 sticky top-8 right-0">
-            //             aside
-            //         </div>
-            //     </div>
-            // </div>
             <div className="text-gray-900 bg-[#ECE7E7] flex gap-8 my-8">
                 {/* Sección de productos */}
                 <div className="w-[70%] min-h-[100px]">
                     {products.length ? (
                         <div>
-                            <div className="bg-white rounded-lg shadow-gray-300 shadow-md">
-                                {products.map((product) => (
-                                    <Card key={product.id} product={product} />
-                                ))}
+                            <div className="bg-gray-300 rounded-lg shadow-gray-300 shadow-md">
+                                <div className="flex flex-col gap-4">
+                                    {products.map((product) => (
+                                        <Card key={product.id} product={product} />
+                                    ))}
+                                </div>
                             </div>
 
                             <div className="flex justify-end gap-4 mt-4">

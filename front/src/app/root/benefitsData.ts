@@ -11,7 +11,7 @@ export const benefitsData: Card[] = [
         description: "Beneficio por ser tu primera compra.",
         button: {
             name: "Mostrar productos",
-            route: "/store"
+            route: "/home"
         }
     },
     {
@@ -37,7 +37,7 @@ export const benefitsData: Card[] = [
         description: "Paga de forma rápida y segura.",
         button: {
             name: "Medios de pago",
-            route: "/store"
+            route: "/home"
         }
     },
     {
@@ -50,7 +50,7 @@ export const benefitsData: Card[] = [
         description: "Encontrá celulares, tablets, notebooks y más.",
         button: {
             name: "Ir a Categorias",
-            route: "/store"
+            route: "/home"
         }
     },
 ]

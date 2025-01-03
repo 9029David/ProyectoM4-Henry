@@ -1,6 +1,5 @@
-import BtnPrimaryComponent from "@/app/shared/components/buttons/BtnPrimary.component"
 import { IProduct } from "@/app/shared/context/IProduct"
-
+import { ButtonBase } from "../shared/components/ButtonBase"
 
 export const CardStoreComponent = ({product} : {product: IProduct}) => {
     const {name, image, price, description} = product
@@ -10,7 +9,7 @@ export const CardStoreComponent = ({product} : {product: IProduct}) => {
             <h3 className="font-bold text-lg mb-2 line-clamp-2">{name}</h3>
             <p className="text-blue-600 font-bold mt-2">${price}</p>
             <p className="text-sm text-gray-600 mt-1 line-clamp-2">{description}</p>
-            <BtnPrimaryComponent name="Agregar al carrito"/>
+            <ButtonBase name="Agregar al carrito"/>
         </>
     )
 }

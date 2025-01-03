@@ -5,9 +5,7 @@ export const handlerLogout = async(router: any, route: string, logout: () => voi
     const result = await getAlert()
         if (result.isConfirmed) {
             logout()
-            setTimeout(() => {
-                Fire("Session closed successfully","success")
-            }, 1000)
+            Fire("Session closed successfully","success")
             router.push(`/${route}`)
         }
 }

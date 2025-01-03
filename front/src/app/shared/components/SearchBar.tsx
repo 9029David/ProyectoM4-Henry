@@ -20,7 +20,7 @@ const SearchBar = () => {
   };
 
   const navigateToProduct = (id: string) => {
-    router.push(`/store/${id}`);
+    router.push(`/home/${id}`);
   };
 
   return (

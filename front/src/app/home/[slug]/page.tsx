@@ -2,7 +2,7 @@
 
 import { IProduct } from "@/app/shared/context/IProduct"
 import { useProducts } from "@/app/shared/context/useProducts"
-import { API_URL } from "@/app/shared/helpers/getEnvs"
+import { NEXT_PUBLIC_API_URL } from "@/app/shared/helpers/getEnvs"
 import ProductDetail from "./ProductDetail"
 import axios from "axios"
 
@@ -26,7 +26,7 @@ export default function ProductPage({params} : {params: Promise<{slug : string}>
                     setLoading(false)
                 }
 
-                const { data } = await axios.get(`${API_URL}/products/${slug}`)
+                const { data } = await axios.get(`${NEXT_PUBLIC_API_URL}/products/${slug}`)
                 setProduct(data)
             } catch (error: any) {
                 console.error(error)

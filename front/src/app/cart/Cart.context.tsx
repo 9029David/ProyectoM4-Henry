@@ -24,29 +24,46 @@ const CartContext = createContext<CartContextType>({
 
 export const CartProvider = ({children}: {children: React.ReactNode}) => {
     const [products, setProducts] = useState<IProduct[]>([])
-    const { isAuthenticated } = useAuth()
+    const { isAuthenticated, user } = useAuth()
 
-    useEffect(() => {
-        const savedProducts = localStorage.getItem("cart")
-        if(savedProducts) return setProducts(JSON.parse(savedProducts))
-        setProducts([])
-    }, [])
+    useEffect(() => { 
+        if(isAuthenticated) {
+            const userCart = localStorage.getItem(`cart_${user?.id}`)
+            setProducts(userCart ? JSON.parse(userCart) : [])
+        }
+    }, [isAuthenticated, user])
+
+    const saveCart = (updatedProducts: IProduct[]) => {
+        if (isAuthenticated) {
+            localStorage.setItem(`cart_${user?.id}`, JSON.stringify(updatedProducts));
+        }
+    };
+
+    const clearCart = () => {
+        if (isAuthenticated) {
+            localStorage.removeItem(`cart_${user?.id}`);
+        }
+    }
 
     const addProductToCart = (product: IProduct) => {
+        if (!isAuthenticated) {
+            alert("Debes iniciar sesión para agregar productos al carrito.");
+            return;
+        }
         const updatedProducts = [...products, product]
         setProducts(updatedProducts)
-        localStorage.setItem("cart", JSON.stringify(updatedProducts))
+        saveCart(updatedProducts)
     }
 
     const removeProductFromCart = (id: number) => {
-        const filteredProduct = products.filter((product) => product.id === id)
+        const filteredProduct = products.filter((product) => product.id !== id)
         setProducts(filteredProduct)
-        localStorage.setItem("cart", JSON.stringify(filteredProduct))
+        saveCart(filteredProduct)
     } 
 
     const emptyCart = () => {
         setProducts([])
-        localStorage.removeItem("cart")
+        clearCart()
     }
 
     const countProducts = (id: number) => {

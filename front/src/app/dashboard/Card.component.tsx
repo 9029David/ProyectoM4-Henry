@@ -1,7 +1,7 @@
+import { IUser } from "@/interfaces/user/IUser"
 import Image from "next/image"
 
-
-export default function Card ({user}: {user: any}) {
+export default function Card ({user}: {user: IUser}) {
     return (
         <div className="flex items-center justify-between text-gray-900">
             <Image src={"/icon-user.png"} alt="icon-user" width={48} height={48}/>

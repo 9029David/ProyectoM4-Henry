@@ -7,11 +7,7 @@ import NavView from "./shared/components/nav/Nav.view";
 import { ProductsProvider } from "./shared/context/useProducts";
 import ExcludedPaths from "./shared/helpers/ExcludedPath";
 import PrivateRoute from "./shared/helpers/PrivateRoute";
-import { Suspense } from "react";
-import Loading from "./loading";
 import { montserrat } from "./shared/fonts/fonts";
-import NavDefault from "./shared/components/nav/Nav.default";
-
 
 export default function RootLayout({children}: {children: React.ReactNode}) {
   return (
@@ -22,10 +18,9 @@ export default function RootLayout({children}: {children: React.ReactNode}) {
               <ProductsProvider>
                 <PrivateRoute redirectRoutes={["/login", "/register"]}>
                   <ExcludedPaths children={<NavView/>}/>
-                    {/* max-w-[1100px] mx-auto   min-h-[200vh]  */}
-                      <main className="bg-[#ECE7E7]">
-                        {children}
-                      </main>
+                    <main className="bg-[#ECE7E7] min-h-screen">
+                      {children}
+                    </main>
                   <ExcludedPaths children={<FooterView/>}/>
                 </PrivateRoute>
               </ProductsProvider>
