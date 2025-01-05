@@ -5,7 +5,20 @@ import { UserInterface } from "../interfaces/User.interface";
 import axios from "axios";
 import { RegisterInterface } from "../../register/Register.interface";
 import { LoginInterface } from "../../login/Login.interface";
-import { NEXT_PUBLIC_API_URL } from "@/app/shared/helpers/getEnvs";
+import { NEXT_PUBLIC_ADMIN_EMAIL, NEXT_PUBLIC_ADMIN_PASSWORD, NEXT_PUBLIC_API_URL } from "@/app/shared/helpers/getEnvs";
+import Loading from "@/app/loading";
+import { jwtDecode } from "jwt-decode";
+
+enum Role {
+    ADMIN = "admin",
+    USER = "user"
+}
+
+// interface CustomJWTInterface {
+//     userId: number
+//     role: Role
+//     iat: number
+// }
 
 interface AuthContextInterface {
     user: UserInterface | null
@@ -14,6 +27,8 @@ interface AuthContextInterface {
     logout: () => void
     isAuthenticated: boolean
     token: string | null
+    isLoading: boolean
+    isAdmin: boolean
 }
 
 const AuthContext = createContext<AuthContextInterface>({
@@ -22,18 +37,23 @@ const AuthContext = createContext<AuthContextInterface>({
     login: (loginForm: LoginInterface) => {},
     logout: () => {},
     isAuthenticated: false,
-    token: null
+    isLoading: true,
+    token: null,
+    isAdmin: false
 })
 
 export const AuthProvider = ({children}: {children: React.ReactNode}) => {
     const [token, setToken] = useState<string | null>(null)
     const [user, setUser] = useState<UserInterface | null>(null)
     const [isAuthenticated, setIsAuthenticated] = useState(false)
- 
+    const [isLoading, setIsLoading] = useState(true);
+    const [isAdmin, setIsAdmin] = useState<boolean>(false)
+
+
     useEffect(() => {
         const user = localStorage.getItem("user")
         const token = localStorage.getItem("token")
-        
+
         if(user && token) {
             setUser(JSON.parse(user))
             setToken(token)
@@ -43,15 +63,30 @@ export const AuthProvider = ({children}: {children: React.ReactNode}) => {
             setToken(null)
             setIsAuthenticated(false)
         }
+
+        setIsLoading(false);
     }, [])
 
-    const login = async (loginForm: LoginInterface) => { 
-        const { data } = await axios.post(`${NEXT_PUBLIC_API_URL}/users/login`, loginForm)
-        setUser(data.user)
-        setToken(data.token)
+    if(isLoading) return <Loading/>
 
+    const login = async (loginForm: LoginInterface) => { 
+        const { email, password } = loginForm
+        
+        const { data } = await axios.post(`${NEXT_PUBLIC_API_URL}/users/login`, loginForm)
+        
+        const isAdmin = email === NEXT_PUBLIC_ADMIN_EMAIL && password === NEXT_PUBLIC_ADMIN_PASSWORD
+
+        const modifiedUser = {
+            ...data.user,
+            role: isAdmin ? Role.ADMIN : data.user.role
+        }
+
+        setUser(modifiedUser)
+        setToken(data.token)
         setIsAuthenticated(true)
-        localStorage.setItem("user", JSON.stringify(data.user))
+        setIsAdmin(modifiedUser.role === Role.ADMIN)
+
+        localStorage.setItem("user", JSON.stringify(modifiedUser))
         localStorage.setItem("token", data.token)  
     }
 
@@ -67,13 +102,16 @@ export const AuthProvider = ({children}: {children: React.ReactNode}) => {
         setToken(null)
     }
 
+
     const value = {
         user,
         register,
         login,
         logout,
         isAuthenticated,
-        token
+        isLoading,
+        token,
+        isAdmin
     }
 
    return (
@@ -87,9 +125,11 @@ export const AuthProvider = ({children}: {children: React.ReactNode}) => {
 export const useAuth = () => {
     const context = useContext(AuthContext)
     // chequeo si puedo usar el useContext en esa parte de la aplicacion
-    // if(!context) throw new Error("useAuth must be used  within an AuthProvider")
+    if(!context) throw new Error("useAuth must be used  within an AuthProvider")
     return context
 }
+
+
 
 
 

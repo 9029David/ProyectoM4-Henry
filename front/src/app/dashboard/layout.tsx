@@ -1,14 +1,14 @@
-"use client"
+import { Metadata } from "next";
+import ProtectedRoute from "../shared/helpers/ProtectedRoute";
 
-import { useAuth } from "../(auth)/shared/context/Auth.context";
-import { AuthRequiredComponent } from "../shared/components/AuthRequired.component";
+export const metadata: Metadata = {
+    title: 'My orders'
+}
 
 export default function DashboardLayout({children}: {children: React.ReactNode}) {
-    const { isAuthenticated } = useAuth()
-
     return (
-        isAuthenticated ? 
-        children : 
-        <AuthRequiredComponent title="Hello! To view your dashboard, please log in to your account"/>
+        <ProtectedRoute title={"Hello! To view your dashboard, please log in to your account"}>
+            {children}
+        </ProtectedRoute>
     );
 }

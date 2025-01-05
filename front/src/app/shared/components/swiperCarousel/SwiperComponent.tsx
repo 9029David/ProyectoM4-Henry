@@ -57,7 +57,7 @@ const SwiperComponent = () => {
     }, [])
 
     return (
-        <div className="swiper-container overflow-hidden relative">
+        <div className="swiper-container overflow-hidden relative h-full">
             <div className="swiper-wrapper">
                 { images.map((imagen) => <SwiperCard key={imagen.id} image={imagen}/>) }
                  

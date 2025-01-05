@@ -1,7 +1,7 @@
 "use client"
 
 import { useCart } from "@/app/cart/Cart.context"
-import CartStatus from "@/app/cart/Cart.status"
+import CartStatus from "@/app/cart/components/Cart.status"
 import IconDefault from "./default/IconDefault"
 import { dCart } from "./default/dValues"
 

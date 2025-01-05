@@ -1,3 +1,4 @@
+import { Route } from "@/routes/routes";
 import { dDashboard, dHome, dLanding, dLogout, dUser } from "../icons/default/dValues";
 import {IconDefault as IconDashboard} from "../icons/default/IconDefault";
 import {IconDefault as IconHome} from "../icons/default/IconDefault";
@@ -20,7 +21,7 @@ export interface INavItemProps {
 export const NavBottomConfig: INavItemProps[] = [
     { 
         id: 1, 
-        href: "/home", 
+        href: Route.HOME, 
         title: "home", 
         icon: <IconLanding dimention={dLanding}/>,
         isPrivate: true,
@@ -28,7 +29,7 @@ export const NavBottomConfig: INavItemProps[] = [
     },
     { 
         id: 2, 
-        href: "/", 
+        href: Route.LANDING, 
         title: "landing", 
         icon: <IconHome dimention={dHome}/>,
         isPrivate: true,
@@ -36,7 +37,7 @@ export const NavBottomConfig: INavItemProps[] = [
     },
     { 
         id: 3,
-        href: "/dashboard", 
+        href: Route.DASHBOARD, 
         title: "dashboard", 
         icon: <IconDashboard dimention={dDashboard}/>,
         isPrivate: true,
@@ -55,8 +56,8 @@ export const NavTopConfig: INavItemProps[] = [
     },
     {
         id: 2,
-        href: "/dashboard",
-        title: "/dashboard",
+        href: Route.DASHBOARD,
+        title: "dashboard",
         icon: <IconUser dimention={dUser}/>,
         isPrivate: true,
         isPublic: false
@@ -70,7 +71,7 @@ export const NavTopConfig: INavItemProps[] = [
     },
     {
         id: 4,
-        href: "/login",
+        href: Route.LOGIN,
         title: "login",
         icon: <IconUser dimention={dUser}/>,
         isPrivate: false,

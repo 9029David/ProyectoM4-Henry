@@ -1,6 +1,6 @@
 import Swal from "sweetalert2";
 
-export const getAlert = () => {
+export const getAlert = (confirmButtonText?: string, action?: Function) => {
     return (
         Swal.fire({
             title: "You're sure?",
@@ -9,7 +9,11 @@ export const getAlert = () => {
             showCancelButton: true,
             confirmButtonColor: "#3085d6",
             cancelButtonColor: "#d33",
-            confirmButtonText: "Logout!"
+            confirmButtonText: confirmButtonText ?? "Logout!"
+        }).then((result) => {
+            if (result.isConfirmed && action) {
+                action(); // Ejecuta la acción pasada como parámetro
+            }
         })
     )
 }

@@ -1,4 +1,4 @@
-import { IProduct } from "@/app/shared/context/IProduct"
+import { IProduct } from "@/app/shared/interfaces/product/IProduct"
 import { ButtonBase } from "../shared/components/ButtonBase"
 
 export const CardStoreComponent = ({product} : {product: IProduct}) => {

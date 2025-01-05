@@ -3,6 +3,7 @@ import FormComponent from "../shared/components/Form.component"
 import { formFields } from "./Register.config"
 import { RegisterInterface } from "./Register.interface"
 import { QuestionForm } from "../shared/components/Question.component"
+import { Route } from "@/routes/routes"
 
 interface RegisterFormProps {
     form: RegisterInterface
@@ -28,7 +29,7 @@ export const RegisterForm: React.FC<RegisterFormProps> = ({
                 formErrors={formErrors}
             />
             <ButtonRegister name={"Register"} isLoading={isLoading}/>
-            <QuestionForm question={"Do you have an account?"} href={"/login"}/> 
+            <QuestionForm question={"Do you have an account?"} href={Route.LOGIN}/> 
         </form>   
     )
 }

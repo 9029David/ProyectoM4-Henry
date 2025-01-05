@@ -8,6 +8,13 @@ import { ProductsProvider } from "./shared/context/useProducts";
 import ExcludedPaths from "./shared/helpers/ExcludedPath";
 import PrivateRoute from "./shared/helpers/PrivateRoute";
 import { montserrat } from "./shared/fonts/fonts";
+import { Metadata } from "next";
+import { Route } from "@/routes/routes";
+
+
+export const metadata: Metadata = {
+  title: 'TechShop - Argentina'
+}
 
 export default function RootLayout({children}: {children: React.ReactNode}) {
   return (
@@ -16,7 +23,7 @@ export default function RootLayout({children}: {children: React.ReactNode}) {
         <AuthProvider>
             <CartProvider>
               <ProductsProvider>
-                <PrivateRoute redirectRoutes={["/login", "/register"]}>
+                <PrivateRoute redirectRoutes={[Route.LOGIN, Route.SIGNUP]}>
                   <ExcludedPaths children={<NavView/>}/>
                     <main className="bg-[#ECE7E7] min-h-screen">
                       {children}

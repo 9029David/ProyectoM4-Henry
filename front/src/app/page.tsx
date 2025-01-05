@@ -4,6 +4,7 @@ import { Card } from "./shared/components/Card.component"
 import SwiperComponent from "./shared/components/swiperCarousel/SwiperComponent"
 import { benefitsData } from "./root/benefitsData"
 import ProductsComponent from "./root/Products.component"
+import { ButtonBase } from "./shared/components/ButtonBase"
 
 export const categories = [
     { id: 1, name: 'Smartphones', image: "https://cdn.pixabay.com/photo/2016/11/29/09/32/man-1868730_640.jpg" },
@@ -18,19 +19,19 @@ export const categories = [
 
 export default function page() {
     return (
-        <div className="flex flex-col ">
+        <div className="flex flex-col gap-8">
             <div className="relative">
-                <section>
+                <section className="h-[350px] ">
                     <SwiperComponent/>
                 </section>
 
-                <section className="benefit-container flex items-center w-full text-black px-6 absolute top-[400px] z-50 overflow-hidden animate-fadeIn">
+                <section className="flex items-center w-full text-gray-900 px-6 z-50 overflow-hidden animate-fadeIn ">
                     <div className="grid grid-cols-2 gap-4 md:grid-cols-4">
                         {benefitsData.map((benefit) => <Card key={benefit.id} data={benefit}/> )}
                     </div>
                 </section>
             </div>
-            <section className="mt-28 px-6">
+            <section className="px-6">
                 <h1 className="my-5 text-3xl font-semibold text-gray-900 text-center">Categories</h1>
                 <div className="grid grid-cols-2 gap-4 md:grid-cols-4">
                     {categories.map((category) => (
@@ -42,9 +43,8 @@ export default function page() {
                             <div className="absolute inset-0 bg-black/40 rounded-lg z-10"></div>
                             <div className="relative z-20 p-4 text-center w-full">
                                 <h3 className="text-lg font-bold">{category.name}</h3>
-                                <button className="mt-2 bg-white text-black px-4 py-1 rounded-lg shadow hover:bg-gray-200">
-                                    Explorar
-                                </button>
+                                <ButtonBase name="Explorar"/>
+                                    
                             </div>
                         </div>
                     ))}

@@ -3,7 +3,7 @@
 import React, { createContext, useContext, useEffect, useState } from "react"
 
 import { useAuth } from "@/app/(auth)/shared/context/Auth.context"
-import { IProduct } from "../shared/context/IProduct"
+import { IProduct } from "../shared/interfaces/product/IProduct"
 
 
 interface CartContextType {
@@ -12,6 +12,7 @@ interface CartContextType {
     removeProductFromCart: (id: number) => void
     emptyCart: () => void
     countProducts: (id: number) => number
+
 }
 
 const CartContext = createContext<CartContextType>({
@@ -19,7 +20,7 @@ const CartContext = createContext<CartContextType>({
     addProductToCart: (product: IProduct) => {},
     removeProductFromCart: (id: number) => {},
     emptyCart: () => {},
-    countProducts: (id: number) => 0
+    countProducts: (id: number) => 0,
 })
 
 export const CartProvider = ({children}: {children: React.ReactNode}) => {
@@ -33,6 +34,22 @@ export const CartProvider = ({children}: {children: React.ReactNode}) => {
         }
     }, [isAuthenticated, user])
 
+
+    useEffect(() => {
+        const syncCartAcrossTabs = (event: StorageEvent) => {
+            if (event.key === `cart_${user?.id}` && event.newValue) {
+            setProducts(JSON.parse(event.newValue));
+            }
+        };
+    
+        window.addEventListener("storage", syncCartAcrossTabs);
+    
+        return () => {
+            window.removeEventListener("storage", syncCartAcrossTabs);
+        };
+    }, [user]);
+
+    
     const saveCart = (updatedProducts: IProduct[]) => {
         if (isAuthenticated) {
             localStorage.setItem(`cart_${user?.id}`, JSON.stringify(updatedProducts));
@@ -71,12 +88,13 @@ export const CartProvider = ({children}: {children: React.ReactNode}) => {
     }
 
 
+
     const value = {
         products,
         addProductToCart,
         removeProductFromCart,
         emptyCart,
-        countProducts
+        countProducts,
     }
 
     return (

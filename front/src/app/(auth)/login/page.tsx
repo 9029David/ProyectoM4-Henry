@@ -9,7 +9,7 @@ import { LoginInterface } from "./Login.interface"
 import { DividerSection as OrDivider } from "../shared/components/DividerSection.component"
 import { ButtonBase as ButtonRegister } from "@/app/shared/components/ButtonBase"
 import LoginForm from "./Login.component"
-import usePublic from "../shared/hooks/usePublic.hook"
+import { Route } from "@/routes/routes"
 
 export const Login = () => {
     const { login } = useAuth()
@@ -20,7 +20,7 @@ export const Login = () => {
         messageSuccess: "Login success",
         authAction: login,
         validateForm: validateLogin,
-        redirectSuccessRoute: "/"
+        redirectSuccessRoute: Route.LANDING
     })
 
     return (
@@ -36,7 +36,7 @@ export const Login = () => {
             <ButtonRegister 
                 name={"Create new account"}
                 variant={"terciary"}
-                href={"/register"}
+                href={Route.SIGNUP}
             />
         </FormWrapper>
     )

@@ -1,3 +1,4 @@
+import { Route } from "@/routes/routes";
 import { ButtonBase } from "./ButtonBase";
 
 export const AuthRequiredComponent = ({title}: {title: string}) => {
@@ -7,8 +8,8 @@ export const AuthRequiredComponent = ({title}: {title: string}) => {
                 <h1 className="text-center text-xl text-gray-900 p-2 font-semibold">
                     {title}
                 </h1>
-                <ButtonBase name="Crear cuenta" href={"/register"} />
-                <ButtonBase name="Ingresar" href={"/login"} variant="secondary" />
+                <ButtonBase name="Crear cuenta" href={Route.SIGNUP} />
+                <ButtonBase name="Ingresar" href={Route.LOGIN} variant="secondary" />
             </div>
         </div>
     );

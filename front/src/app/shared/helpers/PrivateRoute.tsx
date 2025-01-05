@@ -6,6 +6,7 @@ import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import { ShowAlertRoute } from "./ShowAlertRoute";
 import { LoadingSpinner } from "./LoadingSpinner";
+import { Route } from "@/routes/routes";
 
 interface PrivateRouteProps {
   redirectRoutes: string[];
@@ -36,7 +37,7 @@ export default function PrivateRoute({
 
     const handleAuthenticatedUser = () => {
         if (redirectRoutes.includes(pathname)) {
-            const lastPath = localStorage.getItem("lastPath") || "/home";
+            const lastPath = localStorage.getItem("lastPath") || Route.HOME;
             setShouldRender(false);
             router.replace(lastPath);
         } else {

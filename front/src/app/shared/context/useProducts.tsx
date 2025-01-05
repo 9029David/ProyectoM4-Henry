@@ -1,22 +1,23 @@
 "use client"
 
-import { IProduct } from "./IProduct";
+import { IProduct } from "../interfaces/product/IProduct";
 
 import { createContext, useContext, useEffect, useState } from "react";
 import axios from "axios";
 import { NEXT_PUBLIC_API_URL } from "../helpers/getEnvs";
-import { IError } from "./IError";
 
 interface ProductsContextType {
     products: IProduct[]
     loading: boolean
     error: string | undefined
+    getProductById: (id: number) => IProduct | undefined
 }
 
 const ProductsContext = createContext<ProductsContextType>({
     products: [],
     loading: true,
-    error: undefined
+    error: undefined,
+    getProductById: (id: number) => undefined
 });
 
 export const ProductsProvider = ({children}: {children: React.ReactNode}) => {
@@ -28,9 +29,6 @@ export const ProductsProvider = ({children}: {children: React.ReactNode}) => {
         const fetchProducts = async () => {
             try {
                 const response = await axios.get(`${NEXT_PUBLIC_API_URL}/products`)
-
-                if(response.status !== 200) throw new Error("Error al cargar los productos. Intenta nuevamente más tarde.")
-                    
                 setProducts(response.data)
             } catch (error) {
                 setError(
@@ -43,8 +41,12 @@ export const ProductsProvider = ({children}: {children: React.ReactNode}) => {
         fetchProducts()
     }, [])
 
+    const getProductById = (id: number): IProduct | undefined => {
+        return products.find(product => product.id === id) || undefined
+    }
+
     return (
-        <ProductsContext.Provider value={{products, loading, error}}>
+        <ProductsContext.Provider value={{products, loading, error, getProductById}}>
             {children}
         </ProductsContext.Provider>
     )
@@ -52,5 +54,7 @@ export const ProductsProvider = ({children}: {children: React.ReactNode}) => {
 
 export const useProducts = (): ProductsContextType => {
     const context = useContext(ProductsContext)
+
+    if(!context) throw new Error("useProdudcts must be used  within an ProductsProvider")
     return context
 }

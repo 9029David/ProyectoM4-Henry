@@ -1,56 +1,57 @@
+import { Route } from "@/routes/routes";
 import { Card } from "../shared/components/Card.component";
 
 export const benefitsData: Card[] = [
     {
         id: 1, 
-        title: "Envío gratis",
+        title: "Free shipping",
         image: { 
             src: "https://http2.mlstatic.com/frontend-assets/homes-palpatine/dynamic-access-desktop/new-buyer.svg", 
-            alt: "logo envio",
+            alt: "logo shipping",
         },
-        description: "Beneficio por ser tu primera compra.",
+        description: "Benefit for being your first purchase.",
         button: {
-            name: "Mostrar productos",
-            route: "/home"
+            name: "Show products",
+            route: Route.HOME
         }
     },
     {
         id: 2, 
-        title: "Incia sesion",
+        title: "Sign in",
         image: { 
             src: "https://http2.mlstatic.com/frontend-assets/homes-palpatine/dynamic-access-desktop/registration-da.svg", 
-            alt: "logo cuenta",
+            alt: "logo account",
         },
-        description: "Disfrutá de ofertas y comprá sin limites.",
+        description: "Enjoy offers and buy without limits.",
         button: {
-            name: "Ingresar a tu cuenta",
-            route: "/login"
+            name: "Login to your account",
+            route: Route.LOGIN
         }
     },
     {
         id: 3, 
-        title: "Medios de pago",
+        title: "Payment methods",
         image: { 
             src: "https://http2.mlstatic.com/frontend-assets/homes-palpatine/dynamic-access-desktop/payment-methods.svg", 
-            alt: "logo pago",
+            alt: "logo payment",
         },
-        description: "Paga de forma rápida y segura.",
+        description: "Pay quickly and securely.",
         button: {
-            name: "Medios de pago",
-            route: "/home"
+            name: "Payment methods",
+            route: Route.HOME
         }
     },
     {
         id: 4, 
-        title: "Nuestras categorias",
+        title: "Our categories",
         image: { 
             src: "https://http2.mlstatic.com/frontend-assets/homes-palpatine/dynamic-access-desktop/categories.svg", 
-            alt: "logo categorias",
+            alt: "logo categories",
         },
-        description: "Encontrá celulares, tablets, notebooks y más.",
+        description: "Find cell phones, tablets, notebooks and more.",
         button: {
-            name: "Ir a Categorias",
-            route: "/home"
+            name: "Go to Categories",
+            route: Route.HOME
         }
     },
 ]

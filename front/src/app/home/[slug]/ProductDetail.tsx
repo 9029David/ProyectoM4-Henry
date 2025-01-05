@@ -1,10 +1,13 @@
 import BtnAddProduct from "@/app/cart/BtnAddProduct"
 import Logo from "@/app/shared/components/icons/IconTechShop"
-import { IProduct } from "@/app/shared/context/IProduct"
+import { IProduct } from "@/app/shared/interfaces/product/IProduct"
 import { ButtonBase } from "@/app/shared/components/ButtonBase"
+import { Route } from "@/routes/routes"
+import { getRoute } from "@/routes/getRoute"
 
 
 export default function ProductDetail({product} : {product: IProduct}) {
+    const productUrl = getRoute(Route.PRODUCT, { id: product.id });
     return (
         <div>
             <section className="overflow-hidden text-gray-700 bg-white body-font">
@@ -28,7 +31,7 @@ export default function ProductDetail({product} : {product: IProduct}) {
                                     {`$ ${product?.price}`}
                                 </span>
                                 <div className="flex flex-col max-w-xs"> 
-                                    <ButtonBase name="Comprar Ahora" href={`/home/${product.id}`}/> 
+                                    <ButtonBase name="Comprar Ahora" href={getRoute(Route.PRODUCT, { id: product.id })}/> 
                                     <BtnAddProduct product={product}/>
                                 </div>
                             </div>

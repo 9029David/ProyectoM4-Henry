@@ -1,9 +1,8 @@
 "use client"
 
-
 import { useCart } from "@/app/cart/Cart.context"
 import { Mixin } from "@/app/shared/components/MixinAlert"
-import { IProduct } from "@/app/shared/context/IProduct"
+import { IProduct } from "@/app/shared/interfaces/product/IProduct"
 
 import { useEffect, useState } from "react"
 import { useAuth } from "../(auth)/shared/context/Auth.context"
@@ -41,7 +40,12 @@ export default function BtnAddProduct({product}: {product: IProduct }) {
             >
                     Agregar al carrito
             </button>
-            {disabled ? <span className="text-red-500 text-center">No hay stock</span> : null}
+            {
+                disabled ? 
+                <div>
+                    <span className="text-red-500 text-center absolute">No hay stock</span>
+                </div> : null
+            }
         </>
     )
 }

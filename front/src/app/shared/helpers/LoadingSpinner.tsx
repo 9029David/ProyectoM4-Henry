@@ -1,4 +1,4 @@
-import Logo from "@/components/nav/components/icons/IconTechShop"
+import Logo from "../components/icons/IconTechShop"
 import Spinner from "../components/buttons/Spinner.component"
 
 export const LoadingSpinner = () => {

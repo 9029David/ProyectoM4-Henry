@@ -3,15 +3,16 @@
 import { useEffect } from "react"
 import { useAuth } from "../context/Auth.context"
 import { usePathname, useRouter } from "next/navigation"
+import { Route } from "@/routes/routes"
 
-export default function usePublic(redirectRoutes: string[] = ["/login", "/register"]) {
+export default function usePublic(redirectRoutes: string[] = [Route.LOGIN, Route.SIGNUP]) {
     const router = useRouter()
     const pathname = usePathname()
     const { isAuthenticated } = useAuth()
 
     useEffect(() => {
         if(isAuthenticated && redirectRoutes.includes(pathname)) {
-            router.push("/home")
+            router.push(Route.HOME)
         }
             
     }, [isAuthenticated, pathname])

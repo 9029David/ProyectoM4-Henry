@@ -7,6 +7,7 @@ import FormWrapper from "../shared/components/FormWrapper"
 import RegisterForm from "./Register.component"
 import { formInitial, requiredFields } from "./Register.config"
 import { validateFormRegister } from "./Register.validate"
+import { Route } from "@/routes/routes"
 
 export default function Register() {
     const { register } = useAuth()
@@ -17,7 +18,7 @@ export default function Register() {
         messageSuccess: "Register success",
         authAction: register,
         validateForm: validateFormRegister,
-        redirectSuccessRoute: "/login"
+        redirectSuccessRoute: Route.LOGIN
     })
 
     return (

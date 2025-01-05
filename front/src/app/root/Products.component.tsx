@@ -1,9 +1,12 @@
 "use client";
 
 import { ButtonBase } from "@/app/shared/components/ButtonBase";
-import { IProduct } from "@/app/shared/context/IProduct";
+import { IProduct } from "@/app/shared/interfaces/product/IProduct";
 import { useProducts } from "@/app/shared/context/useProducts";
 import Link from "next/link";
+import { useAuth } from "../(auth)/shared/context/Auth.context";
+import { Route } from "@/routes/routes";
+import { getRoute } from "@/routes/getRoute";
 
 export const CardProductComponent = ({ product }: { product: IProduct }) => {
     const { name, image, price } = product;
@@ -18,7 +21,7 @@ export const CardProductComponent = ({ product }: { product: IProduct }) => {
                 />
                 {/* Botón superpuesto */}
                 <div className="absolute inset-0 flex items-center justify-center bg-black bg-opacity-0 group-hover:bg-opacity-40 transition duration-300">
-                    <ButtonBase name="Ver Detalles" href={`/home/${product.id}`}/>
+                    <ButtonBase name="Ver Detalles"/>
                 </div>
             </div>
             {/* Información del producto */}
@@ -32,6 +35,7 @@ export const CardProductComponent = ({ product }: { product: IProduct }) => {
 
 export const ProductsComponent = () => {
     const { products } = useProducts();
+    const { user } = useAuth()
 
     return (
         <section className="bg-gray-50 py-12">
@@ -43,10 +47,11 @@ export const ProductsComponent = () => {
                     {
                         !products.length
                         ? Array.from({ length: 4 }).map((_, index) => (
-                            <div key={index} className="w-full h-64 bg-gray-200 animate-pulse rounded"></div>
+                            <div key={index} className="w-full h-64 bg-gray-200 animate-pulse rounded"></div>    
                         )) 
                         : products.slice(2, 6).map((product: IProduct) => (
-                            <Link key={product.id} href={`/home/${product.id}`}>
+                        // `/home/${product.id}`
+                            <Link key={product.id} href={getRoute(Route.PRODUCT, { id: product.id })}>
                                 <div className="bg-white p-6 rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300">
                                     <CardProductComponent product={product} />
                                 </div>
@@ -55,10 +60,14 @@ export const ProductsComponent = () => {
                     }
                 </div>
                 <div className="flex justify-center mt-10">
-                    <ButtonBase name="Ver más productos" href="/home" />
+                    <ButtonBase name="Ver más productos" href={Route.HOME} />
                 </div>
+                
+                {user?.role === "admin" ? <ButtonBase name="Botón de Admin" onClick={() => alert("Acción exclusiva para admin")}/> : <ButtonBase name="Botón de User" onClick={() => alert("Acción exclusiva para user")}/>}
             </div>
         </section>
+        
+        
     );
 };
 

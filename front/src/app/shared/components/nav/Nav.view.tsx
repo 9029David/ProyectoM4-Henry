@@ -5,6 +5,7 @@ import {Section as NavbarSection} from "../Section"
 import {Wreapper as HeaderWreapper} from "../Wrapper"
 import SearchBar from "../SearchBar"
 
+
 export default function NavView() {
     return (
         <HeaderWreapper as="header">

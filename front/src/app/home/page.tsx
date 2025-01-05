@@ -5,6 +5,8 @@ import React, { useState } from "react";
 import { CardStoreComponent } from "./CardStore.component";
 import Link from "next/link";
 import { useProducts } from "../shared/context/useProducts";
+import { getRoute } from "@/routes/getRoute";
+import { Route } from "@/routes/routes";
 
 export const CategorysConfig = [
     { id: 1, name: 'Smartphones' },
@@ -82,7 +84,7 @@ export const Store = () => {
                             key={product.id}
                             className="bg-white rounded-lg shadow-lg p-6 overflow-hidden text-center transition-all hover:scale-105"
                         >
-                            <Link href={`/home/${product.id}`}>
+                            <Link href={getRoute(Route.PRODUCT, { id: product.id })}>
                                 <CardStoreComponent product={product}/>
                             </Link>
                             

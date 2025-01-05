@@ -3,7 +3,9 @@
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { useProducts } from "../context/useProducts";
-import { IProduct } from "../context/IProduct";
+import { IProduct } from "../interfaces/product/IProduct";
+import { getRoute } from "@/routes/getRoute";
+import { Route } from "@/routes/routes";
 
 const SearchBar = () => {
   const { products } = useProducts();
@@ -20,14 +22,18 @@ const SearchBar = () => {
   };
 
   const navigateToProduct = (id: string) => {
-    router.push(`/home/${id}`);
+    router.push(getRoute(Route.PRODUCT, { id }));
+    
+    setSearchTerm("");
+    setFilteredProducts([]);
   };
+
 
   return (
     <div className="relative w-80">
       <input
         type="text"
-        placeholder="Buscar productos"
+        placeholder="Search products..."
         value={searchTerm}
         onChange={handleSearch}
         className="border p-1 rounded-lg w-full"

@@ -1,4 +1,4 @@
-import { IProduct } from "@/app/shared/context/IProduct";
+import { IProduct } from "@/app/shared/interfaces/product/IProduct";
 import { IUser } from "../user/IUser";
 
 export interface IOrderSucess {
@@ -10,5 +10,5 @@ export interface IOrderSucess {
 
 enum Status {
     APPROVED = "approved",
-    DESAPROVED = "desaproved"
+    DESAPROVED = "cancelled"
 }

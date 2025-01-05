@@ -1,4 +1,4 @@
-import { IUser } from "@/interfaces/user/IUser"
+import { IUser } from "@/app/shared/interfaces/user/IUser"
 import Image from "next/image"
 
 export default function Card ({user}: {user: IUser}) {

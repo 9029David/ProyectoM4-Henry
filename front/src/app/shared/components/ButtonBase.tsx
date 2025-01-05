@@ -22,13 +22,13 @@ export const ButtonBase = ({
     onClick
 }: ButtonBaseProps) => {
     const variantStyles = {
-        primary: "bg-blue-600 hover:bg-blue-700",
+        primary: "bg-blue-600 hover:bg-blue-700 text-white",
         secondary: "bg-blue-50 hover:bg-blue-100 text-[#3483fa]",
-        terciary: "bg-green-500 hover:bg-green-600 ",
+        terciary: "bg-green-500 hover:bg-green-600 text-white",
     }
 
     const ButtonClassName = clsx(
-        "px-4 py-2 rounded border text-white",
+        "px-4 py-2 rounded-md border",
         variantStyles[variant],
         isLoading ? "opacity-50 cursor-not-allowed" : ""
     )

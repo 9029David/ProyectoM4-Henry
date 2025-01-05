@@ -7,7 +7,9 @@ import Swal from "sweetalert2";
 import { NEXT_PUBLIC_API_URL } from "../shared/helpers/getEnvs";
 import { OrderSkeleton } from "./OrderSkeleton";
 import Link from "next/link";
-import { IOrder } from "@/interfaces/user/IOrder";
+import { IOrder } from "@/app/shared/interfaces/user/IOrder";
+import { useOrder } from "./Dashboard.context";
+import { Route } from "@/routes/routes";
 
 
 export function generateVisualID(id: number): string {
@@ -114,7 +116,7 @@ export default function Dashboard() {
             <div>
               <div>
                 You don't have any orders yet.{" "}
-                <Link href="/home" className="text-blue-500 underline">
+                <Link href={Route.HOME} className="text-blue-500 underline">
                   Click here to shop
                 </Link>
                 .
