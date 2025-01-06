@@ -2,11 +2,18 @@
 
 import { Card } from "./shared/components/Card.component"
 import SwiperComponent from "./shared/components/swiperCarousel/SwiperComponent"
-import { benefitsData } from "./root/benefitsData"
-import ProductsComponent from "./root/Products.component"
+import { benefitsData } from "./shared/config/benefitsData"
+import ProductsComponent from "./shared/components/Products.component"
 import { ButtonBase } from "./shared/components/ButtonBase"
+import { CardCategory } from "./CardCategorie"
 
-export const categories = [
+export interface CategoryInterface {
+    id: number
+    name: string
+    image: string
+}
+
+export const categories: CategoryInterface[] = [
     { id: 1, name: 'Smartphones', image: "https://cdn.pixabay.com/photo/2016/11/29/09/32/man-1868730_640.jpg" },
     { id: 2, name: 'Laptops',  image: "https://cdn.pixabay.com/photo/2023/09/06/06/37/laptop-8236497_1280.jpg" },
     { id: 3, name: 'Tablets', image: "https://cdn.pixabay.com/photo/2019/10/15/01/11/ipad-4550306_1280.jpg" },
@@ -17,6 +24,8 @@ export const categories = [
     { id: 8, name: 'Storage', image: "https://cdn.pixabay.com/photo/2016/11/29/09/32/man-1868730_640.jpg" },
 ]
 
+
+
 export default function page() {
     return (
         <div className="flex flex-col gap-8">
@@ -25,28 +34,17 @@ export default function page() {
                     <SwiperComponent/>
                 </section>
 
-                <section className="flex items-center w-full text-gray-900 px-6 z-50 overflow-hidden animate-fadeIn ">
-                    <div className="grid grid-cols-2 gap-4 md:grid-cols-4">
+                <section className="flex items-center w-full text-gray-900 px-6 z-50 animate-fadeIn ">
+                    <div className="grid-responsive mx-auto">
                         {benefitsData.map((benefit) => <Card key={benefit.id} data={benefit}/> )}
                     </div>
                 </section>
             </div>
             <section className="px-6">
                 <h1 className="my-5 text-3xl font-semibold text-gray-900 text-center">Categories</h1>
-                <div className="grid grid-cols-2 gap-4 md:grid-cols-4">
+                <div className="grid-responsive">
                     {categories.map((category) => (
-                        <div
-                            key={category.id}
-                            className="relative bg-cover bg-center rounded-lg shadow-lg h-48 flex items-end text-white overflow-hidden"
-                            style={{ backgroundImage: `url(${category.image})` }}
-                        >
-                            <div className="absolute inset-0 bg-black/40 rounded-lg z-10"></div>
-                            <div className="relative z-20 p-4 text-center w-full">
-                                <h3 className="text-lg font-bold">{category.name}</h3>
-                                <ButtonBase name="Explorar"/>
-                                    
-                            </div>
-                        </div>
+                        <CardCategory key={category.id} category={category}/>
                     ))}
                 </div>
             </section>

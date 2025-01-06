@@ -2,7 +2,7 @@ export enum Route {
     HOME = "/home",
     LANDING = "/",
     DASHBOARD = "/dashboard",
-    PRODUCT = "/home/:id",
+    PRODUCT = "/product/:id",
     LOGIN = "/login",
-    SIGNUP = "/register"
+    SIGNUP = "/signup"
 }

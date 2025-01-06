@@ -9,7 +9,7 @@ import ExcludedPaths from "./shared/helpers/ExcludedPath";
 import PrivateRoute from "./shared/helpers/PrivateRoute";
 import { montserrat } from "./shared/fonts/fonts";
 import { Metadata } from "next";
-import { Route } from "@/routes/routes";
+import { Route } from "@/app/shared/constants/routes";
 
 
 export const metadata: Metadata = {

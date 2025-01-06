@@ -3,7 +3,7 @@
 import { useEffect } from "react"
 import { useAuth } from "../context/Auth.context"
 import { usePathname, useRouter } from "next/navigation"
-import { Route } from "@/routes/routes"
+import { Route } from "@/app/shared/constants/routes"
 
 export default function usePublic(redirectRoutes: string[] = [Route.LOGIN, Route.SIGNUP]) {
     const router = useRouter()

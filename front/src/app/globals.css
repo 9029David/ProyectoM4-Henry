@@ -14,9 +14,30 @@
   }
 }
 
+.cart-sumary {
+  padding: 0;
+  animation: scalePadding 1s linear infinite;
+  scroll-timeline-name: cart-scroll;
+}
+
+@keyframes scaleP {
+  0% {
+    padding: 0px 0px;
+  }
+  100% {
+    padding: 0px 4px;
+  }
+}
+
+
 .animate-fadeIn {
   animation: fadeIn 1s ease-in-out;
 }
+
+.grid-responsive {
+  @apply grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6;
+}
+
  
 
 

@@ -9,7 +9,7 @@ import { LoginInterface } from "./Login.interface"
 import { DividerSection as OrDivider } from "../shared/components/DividerSection.component"
 import { ButtonBase as ButtonRegister } from "@/app/shared/components/ButtonBase"
 import LoginForm from "./Login.component"
-import { Route } from "@/routes/routes"
+import { Route } from "@/app/shared/constants/routes"
 
 export const Login = () => {
     const { login } = useAuth()
@@ -20,7 +20,7 @@ export const Login = () => {
         messageSuccess: "Login success",
         authAction: login,
         validateForm: validateLogin,
-        redirectSuccessRoute: Route.LANDING
+        redirectSuccessRoute: localStorage.getItem("lastPath") || Route.LANDING
     })
 
     return (

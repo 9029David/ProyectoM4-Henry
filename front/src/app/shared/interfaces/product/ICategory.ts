@@ -1,4 +1,4 @@
-import { IProduct } from "../../components/shared/context/IProduct";
+import { IProduct } from "./IProduct";
 
 
 export interface ICategory {

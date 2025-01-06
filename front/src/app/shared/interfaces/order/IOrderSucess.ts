@@ -10,5 +10,5 @@ export interface IOrderSucess {
 
 enum Status {
     APPROVED = "approved",
-    DESAPROVED = "cancelled"
+    CANCELLED = "cancelled"
 }

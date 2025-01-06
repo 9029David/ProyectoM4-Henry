@@ -1,4 +1,4 @@
-import { Route } from "@/routes/routes";
+import { Route } from "@/app/shared/constants/routes";
 import { dDashboard, dHome, dLanding, dLogout, dUser } from "../icons/default/dValues";
 import {IconDefault as IconDashboard} from "../icons/default/IconDefault";
 import {IconDefault as IconHome} from "../icons/default/IconDefault";

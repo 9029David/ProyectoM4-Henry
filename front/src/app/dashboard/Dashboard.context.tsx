@@ -5,7 +5,7 @@ import { createContext, useContext, useEffect, useState } from "react"
 import { useAuth } from "../(auth)/shared/context/Auth.context"
 import axios from "axios"
 import Swal from "sweetalert2"
-import { NEXT_PUBLIC_API_URL } from "../shared/helpers/getEnvs"
+import { NEXT_PUBLIC_API_URL } from "../shared/config/getEnvs"
 
 
 interface DashboardContextInterface {
@@ -68,6 +68,6 @@ export const OrderProvider = ({children}: {children: React.ReactNode}) => {
 export const useOrder = () => {
     const context = useContext(OrderContext)
     // chequeo si puedo usar el useContext en esa parte de la aplicacion
-    // if(!context) throw new Error("useAuth must be used  within an AuthProvider")
+    if(!context) throw new Error("useAuth must be used  within an AuthProvider")
     return context
 }

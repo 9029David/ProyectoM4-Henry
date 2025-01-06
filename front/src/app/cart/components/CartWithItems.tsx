@@ -10,11 +10,11 @@ export default function CartWithItems() {
 
     return (
         <>
-            <div className="w-[70%] min-h-[100px]">
+            <div className="w-full lg:w-[70%] min-h-[100px]" >
                 <CartList products={products} />
             </div>
             
-            <div className="w-[30%] relative">
+            <div className="w-full lg:w-[30%] sticky bottom-0">
                 <CartSummary/>
             </div>
         </>  

@@ -4,9 +4,9 @@ import { ButtonBase } from "@/app/shared/components/ButtonBase";
 import { IProduct } from "@/app/shared/interfaces/product/IProduct";
 import { useProducts } from "@/app/shared/context/useProducts";
 import Link from "next/link";
-import { useAuth } from "../(auth)/shared/context/Auth.context";
-import { Route } from "@/routes/routes";
-import { getRoute } from "@/routes/getRoute";
+import { useAuth } from "../../(auth)/shared/context/Auth.context";
+import { Route } from "@/app/shared/constants/routes";
+import { getRoute } from "@/app/shared/utils/getRoute";
 
 export const CardProductComponent = ({ product }: { product: IProduct }) => {
     const { name, image, price } = product;
@@ -50,7 +50,6 @@ export const ProductsComponent = () => {
                             <div key={index} className="w-full h-64 bg-gray-200 animate-pulse rounded"></div>    
                         )) 
                         : products.slice(2, 6).map((product: IProduct) => (
-                        // `/home/${product.id}`
                             <Link key={product.id} href={getRoute(Route.PRODUCT, { id: product.id })}>
                                 <div className="bg-white p-6 rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300">
                                     <CardProductComponent product={product} />
@@ -63,7 +62,7 @@ export const ProductsComponent = () => {
                     <ButtonBase name="Ver más productos" href={Route.HOME} />
                 </div>
                 
-                {user?.role === "admin" ? <ButtonBase name="Botón de Admin" onClick={() => alert("Acción exclusiva para admin")}/> : <ButtonBase name="Botón de User" onClick={() => alert("Acción exclusiva para user")}/>}
+                {/* {user?.role === "admin" ? <ButtonBase name="Botón de Admin" onClick={() => alert("Acción exclusiva para admin")}/> : <ButtonBase name="Botón de User" onClick={() => alert("Acción exclusiva para user")}/>} */}
             </div>
         </section>
         

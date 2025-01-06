@@ -3,9 +3,9 @@
 import React, { useState, useContext, createContext, useEffect } from "react";
 import { UserInterface } from "../interfaces/User.interface";
 import axios from "axios";
-import { RegisterInterface } from "../../register/Register.interface";
+import { SignupInterface } from "../../signup/Signup.interface";
 import { LoginInterface } from "../../login/Login.interface";
-import { NEXT_PUBLIC_ADMIN_EMAIL, NEXT_PUBLIC_ADMIN_PASSWORD, NEXT_PUBLIC_API_URL } from "@/app/shared/helpers/getEnvs";
+import { NEXT_PUBLIC_ADMIN_EMAIL, NEXT_PUBLIC_ADMIN_PASSWORD, NEXT_PUBLIC_API_URL } from "@/app/shared/config/getEnvs";
 import Loading from "@/app/loading";
 import { jwtDecode } from "jwt-decode";
 
@@ -22,7 +22,7 @@ enum Role {
 
 interface AuthContextInterface {
     user: UserInterface | null
-    register: (registerForm: RegisterInterface) => void
+    signup: (registerForm: SignupInterface) => void
     login: (loginForm: LoginInterface) => void
     logout: () => void
     isAuthenticated: boolean
@@ -33,7 +33,7 @@ interface AuthContextInterface {
 
 const AuthContext = createContext<AuthContextInterface>({
     user: null,
-    register: (registerForm: RegisterInterface) => {},
+    signup: (signupForm: SignupInterface) => {},
     login: (loginForm: LoginInterface) => {},
     logout: () => {},
     isAuthenticated: false,
@@ -90,8 +90,8 @@ export const AuthProvider = ({children}: {children: React.ReactNode}) => {
         localStorage.setItem("token", data.token)  
     }
 
-    const register = async(registerForm: RegisterInterface) => {
-        await axios.post(`${NEXT_PUBLIC_API_URL}/users/register`, registerForm)
+    const signup = async(signupForm: SignupInterface) => {
+        await axios.post(`${NEXT_PUBLIC_API_URL}/users/register`, signupForm)
     }
 
     const logout = async () => {
@@ -105,7 +105,7 @@ export const AuthProvider = ({children}: {children: React.ReactNode}) => {
 
     const value = {
         user,
-        register,
+        signup,
         login,
         logout,
         isAuthenticated,

@@ -4,16 +4,15 @@ import { useEffect, useState } from "react";
 import { useAuth } from "../(auth)/shared/context/Auth.context";
 import axios from "axios";
 import Swal from "sweetalert2";
-import { NEXT_PUBLIC_API_URL } from "../shared/helpers/getEnvs";
+import { NEXT_PUBLIC_API_URL } from "../shared/config/getEnvs";
 import { OrderSkeleton } from "./OrderSkeleton";
 import Link from "next/link";
 import { IOrder } from "@/app/shared/interfaces/user/IOrder";
-import { useOrder } from "./Dashboard.context";
-import { Route } from "@/routes/routes";
+import { Route } from "@/app/shared/constants/routes";
 
 
 export function generateVisualID(id: number): string {
-  const randomPart = Math.random().toString(36).substr(2, 6).toUpperCase(); // Cadena aleatoria de 6 caracteres
+  const randomPart = Math.random().toString(36).substring(2, 6).toUpperCase(); // Cadena aleatoria de 6 caracteres
   return `ORD-${id}-${randomPart}`;
 }
 

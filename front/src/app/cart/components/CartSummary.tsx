@@ -2,12 +2,13 @@
 
 import axios from "axios";
 import { getAlert, Fire } from "../../shared/components/FireAlert";
-import { NEXT_PUBLIC_API_URL } from "../../shared/helpers/getEnvs";
+import { NEXT_PUBLIC_API_URL } from "../../shared/config/getEnvs";
 import { useRouter } from "next/navigation";
 import { useAuth } from "../../(auth)/shared/context/Auth.context";
 import { useCart } from "../Cart.context";
 import { ButtonBase } from "../../shared/components/ButtonBase";
-import { Route } from "@/routes/routes";
+import { Route } from "@/app/shared/constants/routes";
+
 
 export default function CartSummary () {
     const { products, emptyCart } = useCart()

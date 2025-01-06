@@ -5,7 +5,7 @@ import { Mixin } from "@/app/shared/components/MixinAlert"
 import { IProduct } from "@/app/shared/interfaces/product/IProduct"
 
 import { useEffect, useState } from "react"
-import { useAuth } from "../(auth)/shared/context/Auth.context"
+import { useAuth } from "../../(auth)/shared/context/Auth.context"
 
 export default function BtnAddProduct({product}: {product: IProduct }) {
     const { addProductToCart, products, countProducts } = useCart()
@@ -14,11 +14,11 @@ export default function BtnAddProduct({product}: {product: IProduct }) {
 
     const handlerAddProduct = () => {
         if (!isAuthenticated) {
-            Mixin.fire("Debes iniciar sesión para agregar productos al carrito", "", "warning")
+            Mixin.fire("You must log in to add products to the cart", "", "warning")
             return
         }
         addProductToCart(product) 
-        Mixin.fire("Producto agregado", "", "success")
+        Mixin.fire("Product added", "", "success")
     }
 
     const MAX_PRODUCT_FOR_CATEGORY: number = 1
@@ -38,12 +38,12 @@ export default function BtnAddProduct({product}: {product: IProduct }) {
                     `opacity-50 cursor-not-allowed;`
                 }
             >
-                    Agregar al carrito
+                    Add to cart
             </button>
             {
                 disabled ? 
                 <div>
-                    <span className="text-red-500 text-center absolute">No hay stock</span>
+                    <span className="text-red-500 text-center font-semibold absolute">Out of stock</span>
                 </div> : null
             }
         </>

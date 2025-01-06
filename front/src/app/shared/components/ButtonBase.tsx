@@ -12,6 +12,7 @@ interface ButtonBaseProps {
     href?: string 
     isLoading?: boolean
     onClick?: (event: React.MouseEvent<HTMLButtonElement>) => void
+    disabled?: string
 }
 
 export const ButtonBase = ({
@@ -22,13 +23,13 @@ export const ButtonBase = ({
     onClick
 }: ButtonBaseProps) => {
     const variantStyles = {
-        primary: "bg-blue-600 hover:bg-blue-700 text-white",
+        primary: "bg-blue-500 hover:bg-blue-600 text-white",
         secondary: "bg-blue-50 hover:bg-blue-100 text-[#3483fa]",
         terciary: "bg-green-500 hover:bg-green-600 text-white",
     }
 
     const ButtonClassName = clsx(
-        "px-4 py-2 rounded-md border",
+        "px-4 py-2 rounded-lg border",
         variantStyles[variant],
         isLoading ? "opacity-50 cursor-not-allowed" : ""
     )
@@ -39,7 +40,7 @@ export const ButtonBase = ({
         <button 
             onClick={onClick}
             disabled={isLoading}
-            className={`${ButtonClassName} font-semibold`}
+            className={`${ButtonClassName} font-medium`}
         >
             {isLoading ?  <Spinner/> : Action}
         </button>

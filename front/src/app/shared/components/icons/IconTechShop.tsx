@@ -1,4 +1,4 @@
-import { Route } from "@/routes/routes"
+import { Route } from "@/app/shared/constants/routes"
 import Link from "next/link"
 
 export const Logo = () => {

@@ -1,19 +1,19 @@
-import { ButtonBase as ButtonRegister } from "@/app/shared/components/ButtonBase"
+import { ButtonBase as ButtonSignup } from "@/app/shared/components/ButtonBase"
 import FormComponent from "../shared/components/Form.component"
-import { formFields } from "./Register.config"
-import { RegisterInterface } from "./Register.interface"
+import { formFields } from "./Signup.config"
+import { SignupInterface } from "./Signup.interface"
 import { QuestionForm } from "../shared/components/Question.component"
-import { Route } from "@/routes/routes"
+import { Route } from "@/app/shared/constants/routes"
 
-interface RegisterFormProps {
-    form: RegisterInterface
+interface SignupFormProps {
+    form: SignupInterface
     handlerChange: (e: React.ChangeEvent<HTMLInputElement>) => void
     formErrors: Record<string, string>
     handlerSubmit: (e: React.FormEvent<HTMLFormElement>) => void;
     isLoading: boolean
 }
 
-export const RegisterForm: React.FC<RegisterFormProps> = ({
+export const SignupForm: React.FC<SignupFormProps> = ({
     form,
     handlerChange,
     formErrors,
@@ -28,10 +28,10 @@ export const RegisterForm: React.FC<RegisterFormProps> = ({
                 handlerChange={handlerChange} 
                 formErrors={formErrors}
             />
-            <ButtonRegister name={"Register"} isLoading={isLoading}/>
+            <ButtonSignup name={"Signup"} isLoading={isLoading}/>
             <QuestionForm question={"Do you have an account?"} href={Route.LOGIN}/> 
         </form>   
     )
 }
 
-export default RegisterForm
+export default SignupForm

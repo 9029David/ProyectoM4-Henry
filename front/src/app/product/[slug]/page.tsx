@@ -2,12 +2,12 @@
 
 import { IProduct } from "@/app/shared/interfaces/product/IProduct"
 import { useProducts } from "@/app/shared/context/useProducts"
-import { NEXT_PUBLIC_API_URL } from "@/app/shared/helpers/getEnvs"
+import { NEXT_PUBLIC_API_URL } from "@/app/shared/config/getEnvs"
 import ProductDetail from "./ProductDetail"
 import axios from "axios"
-
 import { useEffect, useState } from "react"
 import ProductSkeleton from "./ProductSkeleton"
+import NotFound from "@/app/shared/helpers/not-found"
 
 
 export default function ProductPage({params} : {params: Promise<{slug : string}>}) {
@@ -18,8 +18,9 @@ export default function ProductPage({params} : {params: Promise<{slug : string}>
 
     useEffect(() => {
         const fetchProduct = async () => {
+            const { slug } = await params
+
             try {
-                const { slug } = await params
                 const productFinded = getProductById(Number(slug))
 
                 if(productFinded) {
@@ -31,7 +32,7 @@ export default function ProductPage({params} : {params: Promise<{slug : string}>
                 
             } catch (error) {
                 setError(
-                    error instanceof Error ? error.message : "Error interno del servidor"
+                    `the product of id "${slug}" does not exist`
                 )
             } finally {
                 setLoading(false)
@@ -41,8 +42,8 @@ export default function ProductPage({params} : {params: Promise<{slug : string}>
     }, [params, getProductById])
 
     if (loading) return <ProductSkeleton/>
-    if (error) return <p>Error: {error}</p>;
+    if (error) return <NotFound title={error}/>
 
-    return  product ? <ProductDetail product={product} /> : <p>Producto no encontrado</p>;
+    return  product ? <ProductDetail product={product} /> : <p>Product not found</p>;
 }
 

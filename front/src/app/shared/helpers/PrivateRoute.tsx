@@ -4,9 +4,7 @@ import { useAuth } from "@/app/(auth)/shared/context/Auth.context";
 import { usePathname } from "next/navigation";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
-import { ShowAlertRoute } from "./ShowAlertRoute";
-import { LoadingSpinner } from "./LoadingSpinner";
-import { Route } from "@/routes/routes";
+import { Route } from "@/app/shared/constants/routes";
 
 interface PrivateRouteProps {
   redirectRoutes: string[];

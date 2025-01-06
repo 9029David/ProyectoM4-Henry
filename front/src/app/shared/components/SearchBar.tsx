@@ -4,8 +4,8 @@ import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { useProducts } from "../context/useProducts";
 import { IProduct } from "../interfaces/product/IProduct";
-import { getRoute } from "@/routes/getRoute";
-import { Route } from "@/routes/routes";
+import { getRoute } from "@/app/shared/utils/getRoute";
+import { Route } from "@/app/shared/constants/routes";
 
 const SearchBar = () => {
   const { products } = useProducts();

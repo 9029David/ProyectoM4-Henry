@@ -1,11 +1,11 @@
-import { Route } from "@/routes/routes";
+import { Route } from "@/app/shared/constants/routes";
 
-export default function NotFound() {
+export default function NotFound({title}: {title?: string}) {
     return (
       <div className="flex flex-col items-center justify-center h-screen bg-gray-100">
           <h1 className="text-4xl font-bold text-red-500">404 - Page Not Found</h1>
           <p className="text-gray-700 mt-4">
-              Oops! The page you are looking for doesn’t exist.
+              {!title ?" Oops! The page you are looking for doesn’t exist." : title}
           </p>
           <a
               href={Route.HOME}

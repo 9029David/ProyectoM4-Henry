@@ -1,5 +1,5 @@
-import { Route } from "@/routes/routes";
-import { Card } from "../shared/components/Card.component";
+import { Route } from "@/app/shared/constants/routes";
+import { Card } from "../components/Card.component";
 
 export const benefitsData: Card[] = [
     {

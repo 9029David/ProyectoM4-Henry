@@ -1,5 +1,5 @@
 import { Metadata } from "next";
-import ProductsComponent from "../root/Products.component";
+import ProductsComponent from "../shared/components/Products.component";
 import ProtectedRoute from "../shared/helpers/ProtectedRoute";
 
 

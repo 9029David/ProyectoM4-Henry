@@ -4,20 +4,22 @@ import { IProduct } from "../interfaces/product/IProduct";
 
 import { createContext, useContext, useEffect, useState } from "react";
 import axios from "axios";
-import { NEXT_PUBLIC_API_URL } from "../helpers/getEnvs";
+import { NEXT_PUBLIC_API_URL } from "../config/getEnvs";
 
 interface ProductsContextType {
     products: IProduct[]
     loading: boolean
     error: string | undefined
     getProductById: (id: number) => IProduct | undefined
+    filteredProducts: (selectedCategory: number | null) => IProduct[]
 }
 
 const ProductsContext = createContext<ProductsContextType>({
     products: [],
     loading: true,
     error: undefined,
-    getProductById: (id: number) => undefined
+    getProductById: (id: number) => undefined,
+    filteredProducts: (selectedCategory: number | null) => []
 });
 
 export const ProductsProvider = ({children}: {children: React.ReactNode}) => {
@@ -44,9 +46,24 @@ export const ProductsProvider = ({children}: {children: React.ReactNode}) => {
     const getProductById = (id: number): IProduct | undefined => {
         return products.find(product => product.id === id) || undefined
     }
+    
+    const filteredProducts = (selectedCategory: number | null): IProduct[] => {
+        return selectedCategory
+        ? products.filter((product) => product.categoryId === selectedCategory)
+        : products;
+    }
+
+    const value = {
+        products,
+        loading,
+        error,
+        getProductById,
+        filteredProducts
+    }
+    
 
     return (
-        <ProductsContext.Provider value={{products, loading, error, getProductById}}>
+        <ProductsContext.Provider value={value}>
             {children}
         </ProductsContext.Provider>
     )

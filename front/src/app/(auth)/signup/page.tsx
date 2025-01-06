@@ -2,28 +2,28 @@
 
 import { useAuth } from "../shared/context/Auth.context"
 import { useForm } from "../shared/hooks/useForm.hook"
-import { RegisterInterface } from "./Register.interface"
+import { SignupInterface } from "./Signup.interface"
 import FormWrapper from "../shared/components/FormWrapper"
-import RegisterForm from "./Register.component"
-import { formInitial, requiredFields } from "./Register.config"
-import { validateFormRegister } from "./Register.validate"
-import { Route } from "@/routes/routes"
+import SignupForm from "./Signup.component"
+import { formInitial, requiredFields } from "./Signup.config"
+import { validateFormSignup } from "./Signup.validate"
+import { Route } from "@/app/shared/constants/routes"
 
-export default function Register() {
-    const { register } = useAuth()
+export default function Signup() {
+    const { signup } = useAuth()
     
-    const {formErrors, form, handlerChange, handlerSubmit, isLoading} = useForm<RegisterInterface>({
+    const {formErrors, form, handlerChange, handlerSubmit, isLoading} = useForm<SignupInterface>({
         formInitial,
         requiredFields,
-        messageSuccess: "Register success",
-        authAction: register,
-        validateForm: validateFormRegister,
+        messageSuccess: "Signup success",
+        authAction: signup,
+        validateForm: validateFormSignup,
         redirectSuccessRoute: Route.LOGIN
     })
 
     return (
         <FormWrapper title="Create account" withTopHr withBottomHr={false} >
-            <RegisterForm
+            <SignupForm
                 form={form}
                 formErrors={formErrors}
                 handlerChange={handlerChange}
