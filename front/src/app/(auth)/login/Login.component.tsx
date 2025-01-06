@@ -29,7 +29,7 @@ export const LoginForm: React.FC<LoginFormProps> = ({
                 formErrors={formErrors}
             /> 
             <ButtonLogin name="Login" isLoading={isLoading}/>
-            {/* <ForgotPassword question={"You forgot your password?"} href=""/>   */}
+            <ForgotPassword question={"You forgot your password?"} href=""/>  
         </form>
     )
 }

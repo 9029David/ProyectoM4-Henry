@@ -11,7 +11,7 @@ import { ButtonBase as ButtonRegister } from "@/app/shared/components/ButtonBase
 import LoginForm from "./Login.component"
 import { Route } from "@/app/shared/constants/routes"
 
-export const Login = () => {
+export default function Login() {
     const { login } = useAuth()
 
     const { formErrors, form, handlerChange, handlerSubmit, isLoading } = useForm<LoginInterface>({
@@ -42,7 +42,6 @@ export const Login = () => {
     )
 }
 
-export default Login
 
 
 

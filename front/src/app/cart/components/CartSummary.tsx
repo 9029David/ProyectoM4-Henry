@@ -21,7 +21,7 @@ export default function CartSummary () {
     const handlerEmptyCart = () => {
         getAlert("Clear cart", () => {
             emptyCart()
-            Fire("Deleted!", "Your file has been deleted.")
+            Fire("Deleted!")
         })
     }
 
@@ -37,13 +37,13 @@ export default function CartSummary () {
                         headers: { authorization: token }
                     }
                 )
-                .then(res => {
-                    Fire("Deleted!", "Your file has been deleted.")
+                .then(() => {
+                    Fire("Deleted!")
                     emptyCart()
                     router.push(Route.DASHBOARD)
                 })
-                .catch(error => {
-                    Fire("Deleted!", "Your file has been deleted.")
+                .catch(() => {
+                    Fire("Deleted!")
                 })           
         });
     }

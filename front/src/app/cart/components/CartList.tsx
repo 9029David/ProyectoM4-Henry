@@ -1,7 +1,6 @@
 import { JSX } from "react";
 import { IProduct } from "../../shared/interfaces/product/IProduct";
 import CartItem from "./CartItem";
-import { generateCartItemConfig } from "../config/generateCartItemConfig";
 
 /**
  *  Interfaz que definirá las propiedades que recibe CartList.
@@ -20,14 +19,14 @@ interface ICartListProps {
  * 
  */
 
-export default function CartList({products}: ICartListProps): JSX.Element {
+export default function CartList({ products }: ICartListProps): JSX.Element {
     return (
-       <div className="bg-gray-300 rounded-lg shadow-gray-300 shadow-md">
+        <div>
             <div className="flex flex-col gap-4">
                 {products.map((product: IProduct) => (
-                    <CartItem key={product.id} divConfig={generateCartItemConfig(product)} />
+                    <CartItem key={product.id} product={product} />
                 ))}
             </div>
-        </div> 
-    )
+        </div>
+    );
 }

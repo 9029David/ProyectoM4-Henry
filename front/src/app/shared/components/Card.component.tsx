@@ -1,3 +1,4 @@
+import Image from "next/image"
 import { ButtonBase } from "./ButtonBase"
 
 type Image = {
@@ -26,7 +27,7 @@ export const Card = ({data} : {data: Card}) => {
             <div className="flex flex-col justify-between items-center bg-white rounded-lg p-4 shadow-md h-[300px] w-full space-y-4">
                 <h1 className="text-lg font-semibold text-center line-clamp-2 h-[48px]">{title}</h1>
                 <div className="w-32 h-32 overflow-hidden">
-                    <img className="w-full h-full object-contain" src={image.src} alt={image.alt} width={100} height={100}/>
+                    <Image className="w-full h-full object-contain" src={image.src} alt={image.alt} width={100} height={100}/>
                 </div>
                 <span className="text-sm text-gray-600 text-center line-clamp-2 h-[56px]">{description}</span>
                 <div className="h-[40px] flex items-center">

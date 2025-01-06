@@ -2,6 +2,7 @@ import { useRouter } from "next/navigation"
 import React, { useState } from "react"
 import { Mixin } from "../../../shared/components/MixinAlert"
 import { ErrorsInterface } from "../interfaces/Errors.interface"
+import { AxiosError } from "axios"
 
 /**
  * Interfaz que define las propiedades requeridas para usar el hook "useForm"
@@ -74,15 +75,19 @@ export function useForm<T>({
                 }, 200)
 
                 router.replace(redirectSuccessRoute)
-            } catch (error: any) {
-                const errorMessage = error.response.data.message
-                const messageToShow = [
-                    "Invalid password", "User does not exist"
-                ].includes(errorMessage)
-                    ? "Invalid credentials" : errorMessage
-
-               
-                Mixin.fire(messageToShow ?? error.response.data.message, "", "error")
+            } catch (error: unknown) {
+                if(error instanceof AxiosError) {
+                    const errorMessage = error.response?.data?.message
+                    const messageToShow = [
+                        "Invalid password", "User does not exist"
+                    ].includes(errorMessage)
+                        ? "Invalid credentials" : errorMessage
+    
+                   
+                    Mixin.fire(messageToShow ?? error.response?.data?.message, "", "error")
+                } else {
+                    Mixin.fire("An unexpected error occurred", "", "error");
+                }
             } finally {
                 setIsLoading(false)
             }

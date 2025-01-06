@@ -18,8 +18,8 @@ const ProductsContext = createContext<ProductsContextType>({
     products: [],
     loading: true,
     error: undefined,
-    getProductById: (id: number) => undefined,
-    filteredProducts: (selectedCategory: number | null) => []
+    getProductById: () => undefined,
+    filteredProducts: () => []
 });
 
 export const ProductsProvider = ({children}: {children: React.ReactNode}) => {

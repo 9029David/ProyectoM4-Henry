@@ -9,6 +9,7 @@ import "swiper/css/navigation";
 import { useEffect } from "react"
 import Swiper from "swiper"
 import { Pagination, Navigation, Autoplay } from "swiper/modules"
+import Image from "next/image";
 
 
 export const SwiperCard = ({image}: {image: IImage}) => {
@@ -16,7 +17,7 @@ export const SwiperCard = ({image}: {image: IImage}) => {
         <div className="swiper-slide">
             <div className="overlay"></div> 
             <div>
-                <img className="object-cover object-center h-[500px]" src={image.name} alt="imagen" />
+                <Image className="object-cover object-center" src={image.name} alt="imagen" height={700} width={1365}/>
             </div>
         </div>
     )

@@ -15,5 +15,5 @@ export default function usePublic(redirectRoutes: string[] = [Route.LOGIN, Route
             router.push(Route.HOME)
         }
             
-    }, [isAuthenticated, pathname])
+    }, [isAuthenticated, pathname, redirectRoutes, router])
 }

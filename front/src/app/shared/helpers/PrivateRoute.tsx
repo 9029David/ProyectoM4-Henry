@@ -3,7 +3,7 @@
 import { useAuth } from "@/app/(auth)/shared/context/Auth.context";
 import { usePathname } from "next/navigation";
 import { useRouter } from "next/navigation";
-import { useEffect, useState } from "react";
+import { useEffect, useCallback } from "react";
 import { Route } from "@/app/shared/constants/routes";
 
 interface PrivateRouteProps {
@@ -12,42 +12,35 @@ interface PrivateRouteProps {
 }
 
 export default function PrivateRoute({
-    redirectRoutes,
-    children,
+  redirectRoutes,
+  children,
 }: PrivateRouteProps) {
-    const router = useRouter();
-    const pathname = usePathname();
-    const { isAuthenticated } = useAuth();
-    const [shouldRender, setShouldRender] = useState(false);
+  const router = useRouter();
+  const pathname = usePathname();
+  const { isAuthenticated } = useAuth();
 
-    useEffect(() => {
-        if (!isAuthenticated) {
-            handleUnauthenticatedUser()
-            return
-        } else {
-            handleAuthenticatedUser()
-            return
-        }
-        
-    }, [isAuthenticated, pathname])
+  const handleAuthenticatedUser = useCallback(() => {
+    if (redirectRoutes.includes(pathname)) {
+      const lastPath = localStorage.getItem("lastPath") || Route.LANDING;
+      router.replace(lastPath);
+    } else {
+      localStorage.setItem("lastPath", pathname);
+    }
+  }, [pathname, redirectRoutes, router]);
 
+  const handleUnauthenticatedUser = useCallback(() => {
+    localStorage.removeItem("lastPath");
+  }, []);
 
+  useEffect(() => {
+    if (!isAuthenticated) {
+      handleUnauthenticatedUser();
+      return;
+    } else {
+      handleAuthenticatedUser();
+      return;
+    }
+  }, [isAuthenticated, pathname, redirectRoutes, router, handleAuthenticatedUser, handleUnauthenticatedUser]);
 
-    const handleAuthenticatedUser = () => {
-        if (redirectRoutes.includes(pathname)) {
-            const lastPath = localStorage.getItem("lastPath") || Route.HOME;
-            setShouldRender(false);
-            router.replace(lastPath);
-        } else {
-            localStorage.setItem("lastPath", pathname);
-            setShouldRender(true);
-        }
-    };
-    
-    const handleUnauthenticatedUser = () => {
-        localStorage.removeItem("lastPath");
-        setShouldRender(true);
-    };
-
-    return children 
+  return children;
 }

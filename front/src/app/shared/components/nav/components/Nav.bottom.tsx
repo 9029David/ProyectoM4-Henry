@@ -1,11 +1,12 @@
 "use client"
 
-import { filterNavItems } from "../filterNavItems"
+
+import { useFilterNavItems } from "../filterNavItems"
 import { INavItemProps, NavBottomConfig } from "../Nav.config"
 import { NavItemProps } from "./NavItemProps"
 
 export const NavBottom = () => {
-    const filteredNavTopConfig = filterNavItems(NavBottomConfig)
+    const filteredNavTopConfig = useFilterNavItems(NavBottomConfig)
     return ( 
         <ul className="flex justify-around items-center max-w-[500px]  mx-auto">
             { 

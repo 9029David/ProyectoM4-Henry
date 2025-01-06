@@ -1,6 +1,6 @@
 import Swal from "sweetalert2";
 
-export const getAlert = (confirmButtonText?: string, action?: Function) => {
+export const getAlert = (confirmButtonText?: string, action?: () => void) => {
     return (
         Swal.fire({
             title: "You're sure?",
@@ -18,6 +18,6 @@ export const getAlert = (confirmButtonText?: string, action?: Function) => {
     )
 }
 
-export const Fire = (title: string, icon: string) => {
-    return Swal.fire(title, "",icon = "success")
+export const Fire = (title: string) => {
+    return Swal.fire(title, "", "success")
 }

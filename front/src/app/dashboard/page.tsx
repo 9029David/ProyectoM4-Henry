@@ -9,12 +9,7 @@ import { OrderSkeleton } from "./OrderSkeleton";
 import Link from "next/link";
 import { IOrder } from "@/app/shared/interfaces/user/IOrder";
 import { Route } from "@/app/shared/constants/routes";
-
-
-export function generateVisualID(id: number): string {
-  const randomPart = Math.random().toString(36).substring(2, 6).toUpperCase(); // Cadena aleatoria de 6 caracteres
-  return `ORD-${id}-${randomPart}`;
-}
+import { generateVisualID } from "./generateVisualID";
 
 export default function Dashboard() {
   const { user, token } = useAuth();
@@ -114,7 +109,7 @@ export default function Dashboard() {
           ) : (
             <div>
               <div>
-                You don't have any orders yet.{" "}
+                You don&apos;t have any orders yet.
                 <Link href={Route.HOME} className="text-blue-500 underline">
                   Click here to shop
                 </Link>

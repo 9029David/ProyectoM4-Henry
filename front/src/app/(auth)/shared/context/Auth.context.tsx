@@ -7,7 +7,7 @@ import { SignupInterface } from "../../signup/Signup.interface";
 import { LoginInterface } from "../../login/Login.interface";
 import { NEXT_PUBLIC_ADMIN_EMAIL, NEXT_PUBLIC_ADMIN_PASSWORD, NEXT_PUBLIC_API_URL } from "@/app/shared/config/getEnvs";
 import Loading from "@/app/loading";
-import { jwtDecode } from "jwt-decode";
+// import { jwtDecode } from "jwt-decode";
 
 enum Role {
     ADMIN = "admin",
@@ -33,8 +33,8 @@ interface AuthContextInterface {
 
 const AuthContext = createContext<AuthContextInterface>({
     user: null,
-    signup: (signupForm: SignupInterface) => {},
-    login: (loginForm: LoginInterface) => {},
+    signup: () => {},
+    login: () => {},
     logout: () => {},
     isAuthenticated: false,
     isLoading: true,
@@ -45,8 +45,8 @@ const AuthContext = createContext<AuthContextInterface>({
 export const AuthProvider = ({children}: {children: React.ReactNode}) => {
     const [token, setToken] = useState<string | null>(null)
     const [user, setUser] = useState<UserInterface | null>(null)
-    const [isAuthenticated, setIsAuthenticated] = useState(false)
-    const [isLoading, setIsLoading] = useState(true);
+    const [isAuthenticated, setIsAuthenticated] = useState<boolean>(false)
+    const [isLoading, setIsLoading] = useState<boolean>(true);
     const [isAdmin, setIsAdmin] = useState<boolean>(false)
 
 

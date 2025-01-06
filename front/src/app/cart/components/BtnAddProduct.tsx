@@ -24,8 +24,10 @@ export default function BtnAddProduct({product}: {product: IProduct }) {
     const MAX_PRODUCT_FOR_CATEGORY: number = 1
     useEffect(() => {
         // countProducts(product.id) >= product.stock && setDisabled(true)
-        countProducts(product.id) >= MAX_PRODUCT_FOR_CATEGORY && setDisabled(true)
-    }, [products])
+        if (countProducts(product.id) >= MAX_PRODUCT_FOR_CATEGORY) {
+            setDisabled(true)
+        }
+    }, [products, countProducts, product.id])
 
     return (
         <>

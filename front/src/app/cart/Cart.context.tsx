@@ -17,10 +17,10 @@ interface CartContextType {
 
 const CartContext = createContext<CartContextType>({
     products: [],
-    addProductToCart: (product: IProduct) => {},
-    removeProductFromCart: (id: number) => {},
+    addProductToCart: () => {},
+    removeProductFromCart: () => {},
     emptyCart: () => {},
-    countProducts: (id: number) => 0,
+    countProducts: () => 0,
 })
 
 export const CartProvider = ({children}: {children: React.ReactNode}) => {

@@ -2,21 +2,30 @@
 
 import { INavItemProps, NavTopConfig } from "../Nav.config";
 import { NavItemProps } from "./NavItemProps";
-import { filterNavItems } from "../filterNavItems";
+
 import { useRouter } from "next/navigation";
 import { useAuth } from "@/app/(auth)/shared/context/Auth.context";
-import { handlerLogout } from "../handlerLogout";
+import { Fire, getAlert } from "../../FireAlert";
+import { useFilterNavItems } from "../filterNavItems";
 
 export const NavTop = () => {
     const router = useRouter()
     const { logout } = useAuth()
-    const filteredNavTopConfig = filterNavItems(NavTopConfig)
+    const filteredNavTopConfig = useFilterNavItems(NavTopConfig)
+
+    const handlerLogout = async() => {
+        await getAlert("logout", () => {
+            logout()
+            Fire("success")
+            router.push(`/login`)
+        })
+    }
 
     return (
         <ul className="flex gap-4 items-center">
             { 
                 filteredNavTopConfig.map((item: INavItemProps) => (          
-                    <NavItemProps key={item.id} item={{ ...item, onClick: item.title === "logout" ? () => handlerLogout(router, "login", logout) : undefined }}/>
+                    <NavItemProps key={item.id} item={{ ...item, onClick: item.title === "logout" ? () => handlerLogout() : undefined }}/>
                 )) 
             }
         </ul>

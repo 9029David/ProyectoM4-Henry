@@ -42,6 +42,7 @@ export const OrderProvider = ({children}: {children: React.ReactNode}) => {
                     error.message || "",
                     "error"
                 );
+                setError(error)
             })
             .finally(() => {
                 setIsLoading(false); 

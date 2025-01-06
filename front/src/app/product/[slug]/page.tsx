@@ -31,6 +31,7 @@ export default function ProductPage({params} : {params: Promise<{slug : string}>
                 }
                 
             } catch (error) {
+                console.error(error)
                 setError(
                     `the product of id "${slug}" does not exist`
                 )

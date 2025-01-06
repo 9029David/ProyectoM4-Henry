@@ -1,4 +1,4 @@
-import { IProduct } from "../../frontend/src/components/shared/context/IProduct";
+import { IProduct } from "./IProduct";
 
 export interface IProducts {
     products: IProduct[]

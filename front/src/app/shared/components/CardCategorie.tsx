@@ -1,5 +1,6 @@
-import { CategoryInterface } from "./page"
-import { ButtonBase } from "./shared/components/ButtonBase"
+
+import { CategoryInterface } from "../config/categoriesLanding"
+import { ButtonBase } from "./ButtonBase"
 
 export const CardCategory = ({category}: {category: CategoryInterface}) => {
     return (

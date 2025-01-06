@@ -4,6 +4,7 @@ import { IProduct } from "@/app/shared/interfaces/product/IProduct"
 import { ButtonBase } from "@/app/shared/components/ButtonBase"
 import { Route } from "@/app/shared/constants/routes"
 import { getRoute } from "@/app/shared/utils/getRoute"
+import Image from "next/image"
 
 
 export default function ProductDetail({product} : {product: IProduct}) {
@@ -13,10 +14,12 @@ export default function ProductDetail({product} : {product: IProduct}) {
                 <div className="container px-5 py-24 mx-auto">
                     <div className="flex flex-col lg:flex-row mx-auto lg:w-4/5 gap-6">
                         <div className="w-full lg:w-1/2">
-                            <img 
+                            <Image 
                                 src={product?.image} 
                                 alt={product?.name} 
                                 className="object-contain w-full border border-gray-200 rounded lg:h-auto"
+                                width={500}
+                                height={500}
                             />
                         </div>
                         <div className="w-full lg:w-1/2 lg:pl-10 lg:py-6">

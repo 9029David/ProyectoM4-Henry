@@ -3,7 +3,7 @@ import { InputInterface } from "../interfaces/Input.interface"
 import { ErrorsInterface } from "../interfaces/Errors.interface"
 
 interface FormProps {
-    form: any, 
+    form: Record<string, string>, 
     formErrors: ErrorsInterface, 
     handlerChange: (event: React.ChangeEvent<HTMLInputElement>) => void , 
     inputs: InputInterface[]

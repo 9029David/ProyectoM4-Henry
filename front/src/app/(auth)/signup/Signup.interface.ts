@@ -4,4 +4,5 @@ export interface SignupInterface {
     password: string
     address: string
     phone: string
+    [key: string]: string;
 }

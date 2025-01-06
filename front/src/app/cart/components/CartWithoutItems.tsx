@@ -1,4 +1,5 @@
 import { Route } from "@/app/shared/constants/routes";
+import Image from "next/image";
 import Link from "next/link";
 
 export default function CartWithoutItems() {
@@ -6,7 +7,7 @@ export default function CartWithoutItems() {
         <>
             <div className="lg:w-[70%] min-h-[100px] w-full">
                 <div className="flex justify-between items-center rounded-lg bg-white h-full px-4 shadow-gray-300 shadow-md">
-                    <img src="/logo-cart.png" alt="logo-cart" />
+                    <Image src="/logo-cart.png" alt="logo-cart" width={80} height={80}/>
                     <span className="text-gray-900 font-semibold">Here you will see your products</span>
                     <Link href={Route.HOME} className="text-blue-500">Discover products</Link>
                 </div>

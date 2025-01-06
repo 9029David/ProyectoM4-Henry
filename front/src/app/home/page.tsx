@@ -8,7 +8,7 @@ import HeroSection from "./Hero.component";
 import { CategorysConfig } from "../shared/config/categoriesData";
 
 
-export const Store = () => {
+export default function Home() {
     const { filteredProducts } = useProducts()
     const [selectedCategory, setSelectedCategory] = useState<number | null>(null);
 
@@ -48,8 +48,8 @@ export const Store = () => {
                     <h2 className="text-xl font-bold mb-4">
                         {
                             selectedCategory
-                            ? `Productos de ${CategorysConfig.find((category) => category.id === selectedCategory)?.name}`
-                            : "Todos los Productos"
+                            ? `Products of ${CategorysConfig.find((category) => category.id === selectedCategory)?.name}`
+                            : "All products"
                         }
                     </h2>
                     <div className="grid-responsive">
@@ -70,5 +70,3 @@ export const Store = () => {
         </div>
     )
 }
-
-export default Store

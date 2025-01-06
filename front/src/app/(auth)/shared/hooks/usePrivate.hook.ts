@@ -9,6 +9,8 @@ export default function usePrivate() {
     const router = useRouter()
     const { isAuthenticated } = useAuth()
     useEffect(() => {
-        !isAuthenticated && router.push(Route.HOME)
-    }, [])
+        if (!isAuthenticated) {
+            router.push(Route.HOME);
+        }
+    }, [isAuthenticated, router])
 }
