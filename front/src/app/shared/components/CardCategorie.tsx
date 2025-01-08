@@ -3,6 +3,7 @@ import { CategoryInterface } from "../config/categoriesLanding"
 import { ButtonBase } from "./ButtonBase"
 
 export const CardCategory = ({category}: {category: CategoryInterface}) => {
+
     return (
         <div
             key={category.id}
@@ -12,7 +13,7 @@ export const CardCategory = ({category}: {category: CategoryInterface}) => {
             <div className="absolute inset-0 bg-black/40 rounded-lg z-10"></div>
             <div className="relative z-20 p-4 text-center w-full">
                 <h3 className="text-lg font-bold">{category.name}</h3>
-                <ButtonBase name="Explorar"/>
+                <ButtonBase name="Explorar" href={`/category/${category.id}`}/>
             </div>
         </div>
     ) 

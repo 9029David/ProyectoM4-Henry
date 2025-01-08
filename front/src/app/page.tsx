@@ -6,11 +6,10 @@ import { benefitsData } from "./shared/config/benefitsData"
 import ProductsComponent from "./shared/components/Products.component"
 import { CardCategory } from "./shared/components/CardCategorie"
 import { categories } from "./shared/config/categoriesLanding"
-
-
-
+import { useState } from "react"
 
 export default function page() {
+
     return (
         <div className="flex flex-col gap-8">
             <div className="relative">

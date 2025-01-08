@@ -9,7 +9,7 @@ export const CardStoreComponent = ({product} : {product: IProduct}) => {
     const {name, image, price, description} = product
     return (
         <div
-            className="bg-white rounded-lg shadow-lg p-6 overflow-hidden text-center transition-all hover:scale-105"
+            className="bg-white rounded-lg shadow-lg p-6 overflow-hidden text-center"
         >
             <Link href={getRoute(Route.PRODUCT, { id: product.id })}>
                 <Image className="w-full h-64 object-contain" src={image} alt={name} width={500} height={500} />

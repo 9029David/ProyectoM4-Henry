@@ -14,10 +14,16 @@ import Image from "next/image";
 
 export const SwiperCard = ({image}: {image: IImage}) => {
     return (
-        <div className="swiper-slide">
+        <div className="swiper-slide h-full">
             <div className="overlay"></div> 
-            <div>
-                <Image className="object-cover object-center" src={image.name} alt="imagen" height={700} width={1365}/>
+            <div className="h-full">
+                <Image 
+                    className="object-cover object-center h-full" 
+                    src={image.name} 
+                    alt="imagen" 
+                    height={700} 
+                    width={1365}
+                />
             </div>
         </div>
     )
@@ -59,7 +65,7 @@ const SwiperComponent = () => {
 
     return (
         <div className="swiper-container overflow-hidden relative h-full">
-            <div className="swiper-wrapper">
+            <div className="swiper-wrapper h-full">
                 { images.map((imagen) => <SwiperCard key={imagen.id} image={imagen}/>) }
                  
             </div>
