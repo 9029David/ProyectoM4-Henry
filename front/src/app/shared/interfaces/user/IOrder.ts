@@ -6,5 +6,5 @@ export interface IOrder {
 
 enum Status {
     APPROVED = "approved",
-    DESAPROVED = "desaproved"
+    CANCELLED = "cancelled"
 }

@@ -21,21 +21,21 @@ const RootLayout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
     <html lang="en">
       <body className={`bg-[#ECE7E7] text-white ${montserrat.className} antialiased`}>
         <AuthProvider>
-          <CartProvider>
-            <ProductsProvider>
-              <PrivateRoute redirectRoutes={[Route.LOGIN, Route.SIGNUP]}>
-                <ExcludedPaths>
-                  <NavView />
-                </ExcludedPaths>
-                <main className="bg-[#ECE7E7] min-h-screen">
-                  {children}
-                </main>
-                <ExcludedPaths>
-                  <FooterView />
-                </ExcludedPaths>
-              </PrivateRoute>
-            </ProductsProvider>
-          </CartProvider>
+            <CartProvider>
+              <ProductsProvider>
+                  <PrivateRoute redirectRoutes={[Route.LOGIN, Route.SIGNUP]}>
+                    <ExcludedPaths>
+                      <NavView />
+                    </ExcludedPaths>
+                    <main className="bg-[#ECE7E7] min-h-screen">
+                      {children}
+                    </main>
+                    <ExcludedPaths>
+                      <FooterView />
+                    </ExcludedPaths>
+                  </PrivateRoute> 
+                </ProductsProvider>
+              </CartProvider>
         </AuthProvider>
       </body>
     </html>

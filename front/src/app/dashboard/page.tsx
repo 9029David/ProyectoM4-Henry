@@ -1,75 +1,23 @@
 "use client";
 
-import { useEffect, useState } from "react";
-import { useAuth } from "../(auth)/shared/context/Auth.context";
-import axios from "axios";
-import Swal from "sweetalert2";
-import { NEXT_PUBLIC_API_URL } from "../shared/config/getEnvs";
 import { OrderSkeleton } from "./OrderSkeleton";
 import Link from "next/link";
-import { IOrder } from "@/app/shared/interfaces/user/IOrder";
 import { Route } from "@/app/shared/constants/routes";
-import { generateVisualID } from "./generateVisualID";
+import { CardOrder } from "./CardOrder.component";
+import { useOrder } from "./Dashboard.context";
+import { CardUser } from "./Card.component";
 
 export default function Dashboard() {
-  const { user, token } = useAuth();
-  const [userOrders, setUserOrders] = useState<IOrder[]>([]);
-  const [isLoading, setIsLoading] = useState(true);
-
-  useEffect(() => {
-    if (token) {
-      axios
-        .get(`${NEXT_PUBLIC_API_URL}/users/orders`, {
-          headers: {
-            authorization: token,
-          },
-        })
-        .then((res) => {
-          setUserOrders(res.data.reverse());
-        })
-        .catch((error) => {
-          Swal.fire(
-            "Error al obtener las órdenes del usuario",
-            error.message || "",
-            "error"
-          );
-        })
-        .finally(() => {
-          setIsLoading(false);
-          
-        });
-    }
-  }, [token]);
-
-  const formatDate = (date: Date) =>
-    new Date(date).toLocaleDateString(undefined, {
-      year: "numeric",
-      month: "long",
-      day: "numeric",
-    });
+  const { orders, isLoading } = useOrder()
 
   return (
     <div className="bg-[#ECE7E7] mx-auto p-4 h-[100%] text-gray-900">
       <div className="mx-auto w-full md:w-4/5 lg:w-3/5">
-        {/* Sección de perfil del usuario */}
         <div className="bg-gray-100 p-4 shadow rounded-lg flex flex-col">
           <h2 className="text-xl font-semibold mb-2">User Profile</h2>
-          {user ? (
-            <div>
-              <p>Name: {user.name}</p>
-              <p>Email: {user.email}</p>
-            </div>
-          ) : (
-            <div className="animate-pulse mt-2">
-              <p className="w-32 h-4 bg-gray-300 rounded mb-2"></p>
-              <p className="w-60 h-4 bg-gray-300 rounded"></p>
-            </div>
-          )}
+          <CardUser />
         </div>
-
         <hr className="my-4" />
-
-        {/* Sección de órdenes del usuario */}
         <div className="bg-gray-100 p-4 shadow rounded-lg flex flex-col">
           <h2 className="text-xl font-semibold mb-2">Your Orders</h2>
           {isLoading ? (
@@ -78,43 +26,17 @@ export default function Dashboard() {
                 <OrderSkeleton key={index}/>
               ))}
             </div>
-          ) : userOrders.length ? (
+          ) : orders.length > 0 ? (
             <div className="transition-opacity duration-500">
-              {userOrders.map((order) => (
-                <div
-                  key={order.id}
-                  className="bg-gray-200 p-4 shadow rounded-lg my-4"
-                >
-                  <p>
-                    <strong>ID:</strong> {generateVisualID(order.id)}
-                  </p>
-                  <div>
-                    <strong>Status:</strong>{" "}
-                    <span
-                      className={`px-2 py-1 rounded text-white ${
-                        order.status === "approved"
-                          ? "bg-green-500"
-                          : "bg-yellow-500"
-                      }`}
-                    >
-                      {order.status}
-                    </span>
-                  </div>
-                  <p>
-                    <strong>Date:</strong> {formatDate(order.date)}
-                  </p>
-                </div>
-              ))}
+              { orders.map(order => (<CardOrder key={order.id} order={order}/> )) }
             </div>
           ) : (
             <div>
-              <div>
-                You don&apos;t have any orders yet.
-                <Link href={Route.HOME} className="text-blue-500 underline">
-                  Click here to shop
-                </Link>
-                .
-              </div>
+              You don&apos;t have any orders yet.
+              <Link href={Route.HOME} className="text-blue-500 underline">
+                Click here to shop
+              </Link>
+              .
             </div>
           )}
         </div>

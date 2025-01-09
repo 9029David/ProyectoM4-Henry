@@ -8,6 +8,7 @@ import { useAuth } from "../../(auth)/shared/context/Auth.context";
 import { useCart } from "../Cart.context";
 import { ButtonBase } from "../../shared/components/ButtonBase";
 import { Route } from "@/app/shared/constants/routes";
+import { useOrder } from "@/app/dashboard/Dashboard.context";
 
 
 export default function CartSummary () {
@@ -22,7 +23,9 @@ export default function CartSummary () {
         getAlert("Clear cart", () => {
             emptyCart()
             Fire("Deleted!")
+            
         })
+        // fetchOrders();
     }
 
     const handlerCheckout = () => {
@@ -38,12 +41,12 @@ export default function CartSummary () {
                     }
                 )
                 .then(() => {
-                    Fire("Deleted!")
+                    Fire("Checkout!")
                     emptyCart()
                     router.push(Route.DASHBOARD)
                 })
                 .catch(() => {
-                    Fire("Deleted!")
+                    Fire("Error al realizar el checkout")
                 })           
         });
     }

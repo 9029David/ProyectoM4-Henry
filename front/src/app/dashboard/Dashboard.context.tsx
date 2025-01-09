@@ -26,11 +26,12 @@ export const OrderProvider = ({children}: {children: React.ReactNode}) => {
     const [orders, setOrders] = useState<IOrder[]>([])
     const { token } = useAuth()
 
+
     useEffect(() => {
         if (token) {
             axios.get(`${NEXT_PUBLIC_API_URL}/users/orders`, {
                 headers: {
-                authorization: token,
+                    authorization: token,
                 },
             })
             .then((res) => {
@@ -51,7 +52,6 @@ export const OrderProvider = ({children}: {children: React.ReactNode}) => {
       }, [token]);
  
     
-
     const value = {
         orders,
         isLoading,
@@ -59,9 +59,9 @@ export const OrderProvider = ({children}: {children: React.ReactNode}) => {
     }
 
    return (
-    <OrderContext.Provider value={value}>
-        {children}
-    </OrderContext.Provider>
+        <OrderContext.Provider value={value}>
+            {children}
+        </OrderContext.Provider>
    )
         
 }
@@ -69,6 +69,6 @@ export const OrderProvider = ({children}: {children: React.ReactNode}) => {
 export const useOrder = () => {
     const context = useContext(OrderContext)
     // chequeo si puedo usar el useContext en esa parte de la aplicacion
-    if(!context) throw new Error("useAuth must be used  within an AuthProvider")
+    if(!context) throw new Error("useOrder must be used  within an AuthProvider")
     return context
 }

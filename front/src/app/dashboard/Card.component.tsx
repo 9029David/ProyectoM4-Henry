@@ -1,14 +1,21 @@
-import { IUser } from "@/app/shared/interfaces/user/IUser"
-import Image from "next/image"
+"use client"
 
-export default function Card ({user}: {user: IUser}) {
+import { useAuth } from "../(auth)/shared/context/Auth.context";
+
+export const CardUser = () => {
+    const { user } = useAuth();
+
     return (
-        <div className="flex items-center justify-between text-gray-900">
-            <Image src={"/icon-user.png"} alt="icon-user" width={48} height={48}/>
-            <div className="flex flex-col">
-                <h2 className="text-base sm:text-lg font-bold">{user?.name}</h2>
-                <span className="text-xl sm:text-2xl font-semibold">{user?.email}</span>
+        user ? (
+            <div>
+              <p>Name: {user.name}</p>
+              <p>Email: {user.email}</p>
             </div>
-        </div>
+        ) : (
+            <div className="animate-pulse mt-2">
+              <p className="w-32 h-4 bg-gray-300 rounded mb-2"></p>
+              <p className="w-60 h-4 bg-gray-300 rounded"></p>
+            </div>
+        )
     )
 }
